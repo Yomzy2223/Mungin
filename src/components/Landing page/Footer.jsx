@@ -2,13 +2,15 @@ import React from "react";
 import { BsArrowRightShort } from "react-icons/bs";
 import logo from "../../assets/logo-footer.png";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 const Footer = () => {
   return (
     // parent container
     <div className="bg-[#333333] w-full text-[#FFFFFF] pb-6">
       {/* content container */}
-      <div className="pt-10 space-y-8 flex md:flex-row items-center flex-col md:justify-between mx-auto container ">
+      {/* className="pt-10 space-y-8 flex md:flex-row items-center flex-col md:justify-between mx-auto container " */}
+      <FooterContainer>
         {/* quick access */}
         <div className="p-4 w-1/3 text-center md:text-left ">
           <img src={logo} className="mb-6" alt="mungin" />
@@ -54,9 +56,16 @@ const Footer = () => {
             </button>
           </div>
         </form>
-      </div>
+      </FooterContainer>
     </div>
   );
 };
 
 export default Footer;
+
+export const FooterContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-inline: clamp(40px, 6vw, 120px);
+  padding-block: 20px 15px;
+`;
