@@ -104,4 +104,10 @@ export const Main = styled.div`
   justify-content: space-between;
   gap: 16px;
   width: 100%;
+
+  @media screen and (max-width: 900px) {
+    align-items: center;
+    flex-flow: column;
+    gap: 35px;
+  }
 `;
