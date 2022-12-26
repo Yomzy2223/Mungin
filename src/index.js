@@ -23,6 +23,7 @@ import NutrientRequirements from "./routes/Crop Profile/NutrientRequirements";
 import CropManagement from "./routes/Crop Profile/CropManagement";
 import PlantOperations from "./routes/Crop Profile/PlantOperations";
 import CProfile from "./components/Reusable components/CProfile";
+import { Toaster } from "react-hot-toast";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -51,6 +52,40 @@ root.render(
       <Route path="plant_o" element={<PlantOperations />} /> */}
       <Route path="c_profile" element={<CProfile />} />
     </Routes>
+    <Toaster
+      position="top-right"
+      toastOptions={{
+        className: "",
+        style: {
+          margin: "10px",
+          padding: "10px",
+          display: "inline-flex",
+          fontSize: "14px",
+          zIndex: 999999,
+        },
+        duration: 4000,
+        error: {
+          style: {
+            background: "#ff6363",
+            color: "white",
+          },
+          iconTheme: {
+            primary: "white",
+            secondary: "red",
+          },
+        },
+        success: {
+          style: {
+            background: "green",
+            color: "white",
+          },
+          iconTheme: {
+            primary: "white",
+            secondary: "green",
+          },
+        },
+      }}
+    />
   </BrowserRouter>
 );
 

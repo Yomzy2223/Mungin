@@ -2,12 +2,16 @@ import React from "react";
 import cocoa from "../../assets/cocoa.png";
 import logo from "../../assets/logo-white-bg.png";
 import google from "../../assets/google-s.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
-import AuthService from "../../services/auth.service";
+import AuthService, { registerUser } from "../../services/auth.service";
+import { toast } from "react-hot-toast";
+import Oval from "react-loading-icons/dist/esm/components/oval";
 
 const Register = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const initialValues = {
     fullName: "",
     password: "",
@@ -36,46 +40,63 @@ const Register = () => {
   const [Successful, setSuccessful] = useState(Boolean);
   const [SuccessfulFarm, setSuccessfulFarm] = useState(false);
 
-  const handleSubmit = (e) => {
+  let navigate = useNavigate();
+
+  let baseURL = "https://crop-profiles.herokuapp.com/api/v1/auth";
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setformErrors(validate(formValues, farmer));
     setisSubmit(true);
+    setIsLoading(true);
     setMessage("");
     setSuccessful(false);
     console.log(formValues, "register");
     if (Object.keys(formErrors).length === 0 && isSubmit) {
-      AuthService.register(
-        formValues.email,
-        formValues.password,
-        formValues.fullName,
-        farmer,
-        formValues.numberOfFarm,
-        formValues.farmName,
-        formValues.location,
-        formValues.animalName,
-        formValues.animalsize,
-        formValues.cropName,
-        formValues.cropsize,
-        formValues.produceName,
-        formValues.othersize
-      ).then(
-        (response) => {
-          setMessage(response.data.message);
-          setSuccessful(true);
-          console.log(formValues, "response");
-        },
-        (error) => {
-          const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
-          setSuccessful(false);
-          setMessage(resMessage);
-          console.log(error.response.data);
-        }
-      );
+      let requriedData = {
+        fullName: formValues.fullName,
+        password: formValues.password,
+        email: formValues.email,
+        isFarmer: formValues.farmer,
+      };
+
+      let response = await registerUser(requriedData);
+      console.log(response);
+      if (response.includes("registered successfully")) navigate("/");
+      setIsLoading(false);
+
+      // AuthService.register(
+      //   formValues.email,
+      //   formValues.password,
+      //   formValues.fullName,
+      //   farmer,
+      //   formValues.numberOfFarm,
+      //   formValues.farmName,
+      //   formValues.location,
+      //   formValues.animalName,
+      //   formValues.animalsize,
+      //   formValues.cropName,
+      //   formValues.cropsize,
+      //   formValues.produceName,
+      //   formValues.othersize
+      // ).then(
+      //   (response) => {
+      //     setMessage(response.data.message);
+      //     setSuccessful(true);
+      //     console.log(formValues, "response");
+      //   },
+      //   (error) => {
+      //     const resMessage =
+      //       (error.response &&
+      //         error.response.data &&
+      //         error.response.data.message) ||
+      //       error.message ||
+      //       error.toString();
+      //     setSuccessful(false);
+      //     setMessage(resMessage);
+      //     console.log(error.response.data);
+      //   }
+      // );
       // AuthService.registerFarm(
 
       // ).then(
@@ -95,6 +116,8 @@ const Register = () => {
       //     console.log(error.response.data)
       //   }
       // )
+    } else {
+      setIsLoading(false);
     }
   };
 
@@ -371,7 +394,11 @@ const Register = () => {
             {/* button container */}
             <div>
               <button className="py-6 pl-2 flex flex-1 justify-center font-bold border mb-4 w-4/5 bg-[#17233C] text-white">
-                Register
+                {isLoading ? (
+                  <Oval stroke="#ffffff" fill="white" width={24} height={24} />
+                ) : (
+                  "Register"
+                )}
               </button>
             </div>
             <Link to={"/login"}>

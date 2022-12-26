@@ -1,17 +1,22 @@
 import React from "react";
 import cocoa from "../../assets/cocoa.png";
 import logo from "../../assets/logo-white-bg.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import AuthService from "../../services/auth.service";
+import AuthService, { loginUser } from "../../services/auth.service";
 import { Navigate } from "react-router-dom";
 import axios from "axios";
+import Oval from "react-loading-icons/dist/esm/components/oval";
 
 const Login = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const initialValues = {
     email: "",
     password: "",
   };
+
+  let navigate = useNavigate();
 
   const [formValues, setformValues] = useState(initialValues);
   const handleChange = (event) => {
@@ -24,38 +29,49 @@ const Login = () => {
   const [Message, setMessage] = useState("");
   const [Successful, setSuccessful] = useState(false);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     setformErrors(validate(formValues));
     setisSubmit(true);
-    setLoading(true);
+    // setLoading(true);
+    setIsLoading(true);
     setSuccessful(false);
     setMessage("");
     if (Object.keys(formErrors).length === 0 && isSubmit) {
-      AuthService.login(formValues.email, formValues.password).then(
-        () => {
-          // <Link to={'/'}></Link>;
-          <Navigate to={"/"} replace={true} />;
-          // window.location.reload()
-          setSuccessful(true);
-          console.log(formValues);
-        },
-        (error) => {
-          setMessage(error);
-          const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            console.log(error.response);
-          error.message || error.toString();
-          setLoading(false);
-          setMessage(resMessage);
-          console.log(error.response);
-        }
-      );
-      console.log(formValues);
+      let requriedData = {
+        email: formValues.email,
+        password: formValues.password,
+      };
+
+      let response = await loginUser(requriedData);
+      console.log(response);
+      if (response.toLowerCase().includes("successful")) navigate("/");
+      setIsLoading(false);
+      // AuthService.login(formValues.email, formValues.password).then(
+      //   () => {
+      //     // <Link to={'/'}></Link>;
+      //     <Navigate to={"/"} replace={true} />;
+      //     // window.location.reload()
+      //     setSuccessful(true);
+      //     console.log(formValues);
+      //   },
+      //   (error) => {
+      //     setMessage(error);
+      //     const resMessage =
+      //       (error.response &&
+      //         error.response.data &&
+      //         error.response.data.message) ||
+      //       console.log(error.response);
+      //     error.message || error.toString();
+      //     setLoading(false);
+      //     setMessage(resMessage);
+      //     console.log(error.response);
+      //   }
+      // );
+      // console.log(formValues);
     } else {
-      setLoading(false);
+      setIsLoading(false);
+      // setLoading(false);
     }
     console.log(Loading, "loading");
   };
@@ -139,7 +155,11 @@ const Login = () => {
             {/* button container */}
             <div>
               <button className="py-6 pl-2 flex flex-1 justify-center font-bold border w-4/5 bg-[#17233C] text-white">
-                Login
+                {isLoading ? (
+                  <Oval stroke="#ffffff" fill="white" width={24} height={24} />
+                ) : (
+                  "Login"
+                )}
               </button>
             </div>
             <Link to={"/register"}>
