@@ -6,7 +6,7 @@ import App from "./App";
 import Register from "./routes/Auth/Register";
 import Login from "./routes/Auth/Login";
 // import NotFound from "./routes/NotFound";
-import Database from "./routes/Database/Database.jsx";
+// import Database from "./routes/Database/Database.jsx";
 import CropProfile from "./routes/Crop Profile/CropProfile";
 import Variety from "./routes/Crop Profile/Variety";
 import Description from "./routes/Crop Profile/Description";
@@ -24,6 +24,7 @@ import CropManagement from "./routes/Crop Profile/CropManagement";
 import PlantOperations from "./routes/Crop Profile/PlantOperations";
 import CProfile from "./components/Reusable components/CProfile";
 import { Toaster } from "react-hot-toast";
+import Database from "./routes/Database";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -33,6 +34,7 @@ root.render(
       <Route path="register" element={<Register />} />
       <Route path="login" element={<Login />} />
       {/* <Route path="*" element={<NotFound />} /> */}
+      {/* <Route path="database" element={<Database />} /> */}
       <Route path="database" element={<Database />} />
       <Route path="crop-profile" element={<CropProfile />} />
       <Route path="/database/*" element={<CropDataTemplate />} />
