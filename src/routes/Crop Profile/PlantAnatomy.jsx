@@ -2,7 +2,9 @@ import React from "react";
 import Navbar from "../../components/Reusable components/Navbar";
 import anatomy from "../../assets/anatomy.png";
 import CProfile from "../../components/Reusable components/CProfile";
-const PlantAnatomy = () => {
+const PlantAnatomy = ({ CropInfo }) => {
+  console.log(CropInfo);
+
   return (
     // parent container
     <div className="flex">
@@ -22,7 +24,7 @@ const PlantAnatomy = () => {
         </div>
         {/* content */}
         <div className="m-8">
-          <img src={anatomy} alt="anatomy" />
+          <img src={CropInfo.imageUrl} alt="anatomy" />
         </div>
       </div>
     </div>

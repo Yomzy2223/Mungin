@@ -75,10 +75,7 @@ const CropDataTemplate = () => {
               path="/crop-profile"
               element={<CropProfile CropInfo={CropInfo} />}
             />
-            <Route
-              path="cultivar"
-              element={<Cultivar CropInfo={{ CropInfo }} />}
-            />
+            <Route path="cultivar" element={<Cultivar CropInfo={CropInfo} />} />
             <Route path="variety" element={<Variety CropInfo={CropInfo} />} />
             <Route path="crop_v" element={<CropValue CropInfo={CropInfo} />} />
             <Route
