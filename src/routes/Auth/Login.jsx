@@ -103,7 +103,7 @@ const Login = () => {
 
   return (
     // paret container
-    <div className="flex ">
+    <Container className="flex ">
       {/* <pre>{JSON.stringify(formValues,undefined,2)}</pre> */}
       {/* left container */}
       <LeftContainer className="sm:hidden md:block">
@@ -185,16 +185,26 @@ const Login = () => {
           </div>
         )}
       </RightContainer>
-    </div>
+    </Container>
   );
 };
 
 export default Login;
 
+export const Container = styled.div`
+  display: flex;
+  gap: clamp(20px, 3vw, 32px);
+
+  @media screen and (min-width: 700px) {
+    padding-right: clamp(20px, 3vw, 32px);
+  }
+`;
+
 export const LeftContainer = styled.div`
   width: 50%;
 
   img {
+    min-height: 100vh;
     height: 100%;
     object-fit: cover;
   }

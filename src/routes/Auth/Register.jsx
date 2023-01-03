@@ -160,7 +160,7 @@ const Register = () => {
 
   return (
     // parent container
-    <div className="flex ">
+    <Container className="flex ">
       {/* left container */}
       <LeftContainer>
         <img src={cocoa} className="h-max bg-contain" alt="cocoa" />
@@ -432,11 +432,20 @@ const Register = () => {
             </div>):null
           } */}
       </RightContainer>
-    </div>
+    </Container>
   );
 };
 
 export default Register;
+
+export const Container = styled.div`
+  display: flex;
+  gap: clamp(20px, 3vw, 32px);
+
+  @media screen and (min-width: 700px) {
+    padding-right: clamp(20px, 3vw, 32px);
+  }
+`;
 
 export const LeftContainer = styled.div`
   width: 50%;
@@ -444,6 +453,7 @@ export const LeftContainer = styled.div`
   img {
     height: 100%;
     object-fit: cover;
+    min-height: 100vh;
   }
 
   @media screen and (max-width: 700px) {
