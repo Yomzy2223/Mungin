@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import AuthService, { registerUser } from "../../services/auth.service";
 import { toast } from "react-hot-toast";
 import Oval from "react-loading-icons/dist/esm/components/oval";
+import styled from "styled-components";
 
 const Register = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -161,11 +162,11 @@ const Register = () => {
     // parent container
     <div className="flex ">
       {/* left container */}
-      <div className="sm:hidden md:block">
+      <LeftContainer>
         <img src={cocoa} className="h-max bg-contain" alt="cocoa" />
-      </div>
+      </LeftContainer>
       {/* right container */}
-      <div className="md:w-1/2 sm:w-full container mx-auto mt-10 ml-20 pb-6">
+      <RightContainer className="md:w-1/2 sm:w-full container mx-auto mt-10 pb-6">
         {/* error message */}
 
         {/* {formErrors.length === 0 ? <div className='flex w-4/5 justify-center '><p className='p-2 px-4 bg-red-500 rounded-lg text-white font-semibold animate-pulse'>Failed 😔 </p></div> :null} */}
@@ -430,9 +431,37 @@ const Register = () => {
             <p className='p-2 bg-[#83BF4F] rounded-lg text-white animate-pulse font-semibold px-4'>Registered successfully ✅ </p>
             </div>):null
           } */}
-      </div>
+      </RightContainer>
     </div>
   );
 };
 
 export default Register;
+
+export const LeftContainer = styled.div`
+  width: 50%;
+
+  img {
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media screen and (max-width: 700px) {
+    display: none;
+  }
+`;
+
+export const RightContainer = styled.div`
+  input,
+  button,
+  select {
+    width: 100%;
+  }
+
+  max-width: 85%;
+
+  @media screen and (max-width: 700px) {
+    background-image: url("../../assets/cocoa.png");
+    background: image(cocoa);
+  }
+`;

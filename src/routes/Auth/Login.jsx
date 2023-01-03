@@ -7,6 +7,7 @@ import AuthService, { loginUser } from "../../services/auth.service";
 import { Navigate } from "react-router-dom";
 import axios from "axios";
 import Oval from "react-loading-icons/dist/esm/components/oval";
+import styled from "styled-components";
 
 const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -105,11 +106,11 @@ const Login = () => {
     <div className="flex ">
       {/* <pre>{JSON.stringify(formValues,undefined,2)}</pre> */}
       {/* left container */}
-      <div className="sm:hidden md:block">
+      <LeftContainer className="sm:hidden md:block">
         <img src={cocoa} className="h-max bg-contain" alt="cocoa" />
-      </div>
+      </LeftContainer>
       {/* right container */}
-      <div className="md:w-1/2 sm:w-full container mx-auto mt-10 ml-20">
+      <RightContainer className="md:w-1/2 sm:w-full container mx-auto mt-10">
         <Link to={"/"}>
           <img src={logo} width={150} alt="Mungin" />
         </Link>
@@ -183,9 +184,37 @@ const Login = () => {
             </p>
           </div>
         )}
-      </div>
+      </RightContainer>
     </div>
   );
 };
 
 export default Login;
+
+export const LeftContainer = styled.div`
+  width: 50%;
+
+  img {
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media screen and (max-width: 700px) {
+    display: none;
+  }
+`;
+
+export const RightContainer = styled.div`
+  input,
+  button,
+  select {
+    width: 100%;
+  }
+
+  max-width: 85%;
+
+  @media screen and (max-width: 700px) {
+    background-image: url("../../assets/cocoa.png");
+    background: image(cocoa);
+  }
+`;
