@@ -13,22 +13,22 @@ const WorkProgress = () => {
       </Top>
       <Main>
         <WorkProgressCard
-          title="Digital field trials"
-          text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, magnam earum nisi repudiandae laboriosam dolor."
+          title="Unlock Data"
+          text="Combining an uncompromising engineering mindset with an unwavering focus on data sourcing and aggregation making ready data that meets the highest level of integrity and reliability available for analysis."
         />
         <Spiral>
           <Wave1 />
         </Spiral>
         <WorkProgressCard
-          title="MUNGIN"
-          text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, magnam earum nisi repudiandae laboriosam dolor."
+          title="Activate Analysis"
+          text="Leveraging advanced analytics we sift through chaotic data into one comprehensive and flexible structure, creating personalized real-time dashboards that make managing agricultural business insights easier."
         />
         <Spira2>
           <Wave2 />
         </Spira2>
         <WorkProgressCard
-          title="Digital field trials"
-          text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, magnam earum nisi repudiandae laboriosam dolor."
+          title="Accelerate Value"
+          text="By providing insights-as-a-service: Actionable agricultural and business insights out of data. With good data and the right technology, people and institutions in Nigeria today will be able to solve the hard problems and change the country for the better."
         />
       </Main>
     </Container>

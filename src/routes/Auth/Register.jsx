@@ -273,7 +273,7 @@ const Register = () => {
                     name="farmName"
                     value={formValues.farmName}
                     onChange={handleChange}
-                    placeholder="Mungin Farms"
+                    placeholder="Mungin farms, Zulu farms, Audu farms..."
                     className="py-3 pl-4 flex-1  border w-4/5"
                   />
                 </div>
@@ -316,7 +316,7 @@ const Register = () => {
                         type="text"
                         name="animalName"
                         onChange={handleChange}
-                        placeholder="Animal Reserve"
+                        placeholder="Goat, Cow, Dog..."
                         className="py-3 pl-4 flex-1  border w-4/5"
                       />
                     </div>
@@ -344,7 +344,7 @@ const Register = () => {
                         type="text"
                         name="cropName"
                         onChange={handleChange}
-                        placeholder="Crop Reserve"
+                        placeholder="Maize, Yam, Cassava..."
                         className="py-3 pl-4 flex-1  border w-4/5"
                       />
                     </div>

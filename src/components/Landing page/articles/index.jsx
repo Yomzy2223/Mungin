@@ -8,7 +8,7 @@ const Articles = () => {
     <Container>
       <Top>
         <Title>Latest News & Articles</Title>
-        <Text>
+        {/* <Text>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem
             eligendi saepe, quas tempora quam ullam!
@@ -19,7 +19,7 @@ const Articles = () => {
             </button>
             <button></button>
           </Buttons>
-        </Text>
+        </Text> */}
       </Top>
       <Main>
         <ArticlesCard
