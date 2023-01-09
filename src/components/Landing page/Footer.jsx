@@ -34,14 +34,14 @@ const Footer = () => {
             <Details className=" pt:6 text-left my-2 font-light">
               Our Mission
             </Details>
-            <Details className="text-left my-2 font-light">
-              <Details
-              // href="https://www.newsnow.com/ng/Economy/Agriculture"
-              // target="_blank"
-              >
-                News & Articles
-              </Details>
+            {/* <Details className="text-left my-2 font-light"> */}
+            <Details
+            // href="https://www.newsnow.com/ng/Economy/Agriculture"
+            // target="_blank"
+            >
+              News & Articles
             </Details>
+            {/* </Details> */}
             <Details className=" text-left my-2 font-light">
               Working process
             </Details>

@@ -2,16 +2,16 @@ import React, { useEffect, useState } from "react";
 import Hero from "./components/Landing page/Hero";
 import MiniCard from "./components/Landing page/MiniCard";
 import Navbar from "./components/Landing page/Navbar";
-import Mission from "./components/Landing page/Mission";
+import Mission from "./components/Landing page/mission";
 import About from "./components/Landing page/About";
 import Advert from "./components/Landing page/Advert";
 import Footer from "./components/Landing page/Footer";
 import UserService from "./services/user.service";
 
 import { Routes, Route } from "react-router-dom";
-import WorkProgress from "./components/Landing page/workProgress";
+import WorkProgress from "./components/Landing page/WorkingProgress";
 import styled from "styled-components";
-import Articles from "./components/Landing page/articles";
+import Articles from "./components/Landing page/Articles";
 
 const App = () => {
   // const [Content, setContent] = useState("");
