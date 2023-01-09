@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
 import "./index.css";
 import App from "./App";
 import Register from "./routes/Auth/Register";
@@ -29,7 +29,7 @@ import Database from "./routes/Database";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
-    <Routes>
+    <HashRouter>
       <Route exact path="/" element={<App />} />
       <Route path="register" element={<Register />} />
       <Route path="login" element={<Login />} />
@@ -53,7 +53,7 @@ root.render(
       <Route path="crop_m" element={<CropManagement />} />
       <Route path="plant_o" element={<PlantOperations />} /> */}
       <Route path="c_profile" element={<CProfile />} />
-    </Routes>
+    </HashRouter>
     <Toaster
       position="top-right"
       toastOptions={{
