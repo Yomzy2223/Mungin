@@ -19,18 +19,18 @@ const Mission = () => {
         <Left>
           <PointerTemplate
             pointer={pointerTop}
-            text="Plant Protection"
+            text="Plant Sciences"
             position="left"
             top={true}
           />
           <PointerTemplate
             pointer={pointerMid}
-            text="Plant Protection"
+            text="Soil and Water"
             position="left"
           />
           <PointerTemplate
             pointer={pointerBottom}
-            text="Plant Protection"
+            text="Post-harvest and Processing"
             position="left"
             bottom={true}
           />
@@ -46,12 +46,12 @@ const Mission = () => {
           />
           <PointerTemplate
             pointer={pointerMid}
-            text="Plant Protection"
+            text="Animal Sciences"
             position="right"
           />
           <PointerTemplate
             pointer={pointerBottom}
-            text="Plant Protection"
+            text="Agricultural Engineering"
             position="right"
             bottom={true}
           />
@@ -68,6 +68,10 @@ export const MissionContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 70px;
+
+  @media screen and (max-width: 420px) {
+    transform: scale(0.7);
+  }
 `;
 
 export const Body = styled.div`
@@ -76,7 +80,7 @@ export const Body = styled.div`
 
 export const TreeImg = styled.img`
   max-height: 656px;
-  min-width: 150px;
+  min-width: 80px;
   width: 20vw;
   max-width: 256px;
   /* max-width: 256px; */

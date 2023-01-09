@@ -7,6 +7,20 @@ export const PointerContainer = styled.div`
   gap: 16px;
   font-weight: 700;
   font-size: clamp(14px, 1.5vw, 18px);
+
+  span {
+    max-width: max-content;
+    text-align: ${({ position }) => (position === "left" ? "right" : "left")};
+
+    @media screen and (max-width: 800px) {
+      text-align: ${({ position }) => (position === "left" ? "left" : "right")};
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    flex-flow: ${({ position }) =>
+      position === "left" ? "column-reverse" : "column"};
+  }
 `;
 export const Pointer = styled.div`
   display: flex;
@@ -17,18 +31,25 @@ export const Left = styled.div`
   display: flex;
   flex-flow: column;
   justify-content: space-between;
+  gap: 70px;
+  align-items: flex-end;
+  margin-right: 15px;
 `;
 
 export const Right = styled.div`
   display: flex;
   flex-flow: column;
   justify-content: space-between;
+  gap: 70px;
+  align-items: flex-start;
 `;
 
 export const PointerImage = styled.img`
   position: relative;
   top: ${({ $bottom, $top }) => ($bottom ? "-18px" : $top ? "18px" : "")};
   transform: ${({ $left }) => $left && "rotateY(180deg)"};
+  max-width: 86px;
+  /* max-height: 55px; */
 `;
 
 export const IconWrapper = styled.div`
