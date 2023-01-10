@@ -9,6 +9,12 @@ const Navbar = () => {
   const handleNav = () => {
     setnav(!nav);
   };
+
+  const scrollTo = (id) => {
+    let element = document.getElementById(id);
+    element.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <HeaderContainer className=" flex flex-row justify-between mt-6 py-4">
       {/* image container */}
@@ -19,9 +25,14 @@ const Navbar = () => {
       <div className="w-3/5  justify-between md:flex hidden lg:flex ">
         {/* link container */}
         <div className="flex items-center justify-between space-x-2 w-full flex-row ">
-          <p>Process</p>
-          <p className="whitespace-nowrap">Our Mission</p>
-          <p>News</p>
+          <NavList onClick={() => scrollTo("work-progress")}>Process</NavList>
+          <NavList
+            className="whitespace-nowrap"
+            onClick={() => scrollTo("our-mission")}
+          >
+            Our Mission
+          </NavList>
+          <NavList onClick={() => scrollTo("news-articles")}>News</NavList>
           <Link to={"/register"}>
             <button className="text-[#375A1A] whitespace-nowrap">
               Join Waiting List
@@ -66,4 +77,8 @@ export default Navbar;
 export const HeaderContainer = styled.div`
   width: 100%;
   padding-inline: clamp(40px, 6vw, 120px);
+`;
+
+export const NavList = styled.p`
+  cursor: pointer;
 `;

@@ -5,7 +5,7 @@ import { AiOutlineArrowLeft } from "react-icons/ai";
 
 const Articles = () => {
   return (
-    <Container>
+    <Container id="news-articles">
       <Top>
         <Title>Latest News & Articles</Title>
         {/* <Text>
@@ -49,6 +49,7 @@ export const Container = styled.div`
   flex-flow: column;
   gap: 27px;
   width: 100%;
+  padding-top: 30px;
 `;
 
 export const Top = styled.div`

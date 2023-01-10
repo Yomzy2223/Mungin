@@ -13,7 +13,7 @@ import { Left, Right } from "./styled";
 
 const Mission = () => {
   return (
-    <MissionContainer className="flex justify-center mt-24 mb-8">
+    <MissionContainer className="flex justify-center mb-8" id="our-mission">
       <Title />
       <Body>
         <Left>
@@ -27,6 +27,7 @@ const Mission = () => {
             pointer={pointerMid}
             text="Soil and Water"
             position="left"
+            pointerStyle={pointerStyleLeft}
           />
           <PointerTemplate
             pointer={pointerBottom}
@@ -48,6 +49,7 @@ const Mission = () => {
             pointer={pointerMid}
             text="Animal Sciences"
             position="right"
+            pointerStyle={pointerStyleRight}
           />
           <PointerTemplate
             pointer={pointerBottom}
@@ -68,6 +70,7 @@ export const MissionContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 70px;
+  padding-top: 30px;
 
   @media screen and (max-width: 420px) {
     transform: scale(0.7);
@@ -86,3 +89,10 @@ export const TreeImg = styled.img`
   /* max-width: 256px; */
   object-fit: contain;
 `;
+
+export const pointerStyleLeft = {
+  transform: "rotate(0deg)",
+};
+export const pointerStyleRight = {
+  transform: "rotate(180deg)",
+};

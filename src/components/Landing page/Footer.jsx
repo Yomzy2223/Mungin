@@ -19,10 +19,11 @@ const Footer = () => {
         </Top>
         <Body>
           <div>
-            <h2 className="mb-4 text-xl font-semibold">Quick Access</h2>
+            <h2 className="mb-4 text-xl font-semibold">
+              The Agricultural Intelligence Platform
+            </h2>
             <Details className="mb-4 font-light">
-              We are one of the leading companies that has made automation of We
-              are one of the leading companies
+              Growing agricultural data for immediate impact.
             </Details>
             <Details className="text-sm">
               © 2021 Mungin. All rights reserved

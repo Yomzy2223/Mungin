@@ -2,13 +2,26 @@ import React from "react";
 import { receiptDiscount } from "../../../assets/icons";
 import { IconWrapper, Pointer, PointerContainer, PointerImage } from "./styled";
 
-const PointerTemplate = ({ pointer, position, bottom, top, text }) => {
+const PointerTemplate = ({
+  pointer,
+  position,
+  bottom,
+  top,
+  text,
+  pointerStyle,
+}) => {
   return (
     <PointerContainer position={position}>
       {position === "left" && <span position={position}>{text}</span>}
       <Pointer>
         {position === "right" && (
-          <PointerImage src={pointer} alt="" $bottom={bottom} $top={top} />
+          <PointerImage
+            src={pointer}
+            alt=""
+            $bottom={bottom}
+            $top={top}
+            style={pointerStyle}
+          />
         )}
         <IconWrapper>
           <img src={receiptDiscount} alt="" />
@@ -20,6 +33,7 @@ const PointerTemplate = ({ pointer, position, bottom, top, text }) => {
             $left
             $bottom={bottom}
             $top={top}
+            style={pointerStyle}
           />
         )}
       </Pointer>

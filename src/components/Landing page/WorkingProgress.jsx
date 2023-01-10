@@ -6,10 +6,10 @@ import { ReactComponent as Wave2 } from "../../assets/icons/Wave2.svg";
 
 const WorkProgress = () => {
   return (
-    <Container>
+    <Container id="work-progress">
       <Top>
-        <p>HOW IT WORKS</p>
-        <p>Working Process</p>
+        <p>THE NEED OF TOMORROW</p>
+        <p>Delivered Today</p>
       </Top>
       <Main>
         <WorkProgressCard
@@ -46,6 +46,7 @@ export const Container = styled.div`
   gap: 47px;
   width: 100%;
   max-width: 900px;
+  padding-top: 30px;
 `;
 
 export const Top = styled.div`
