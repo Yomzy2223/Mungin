@@ -7,13 +7,15 @@ export const PointerContainer = styled.div`
   gap: 16px;
   font-weight: 700;
   font-size: clamp(14px, 1.5vw, 18px);
+  color: #313131;
 
   span {
     max-width: max-content;
     text-align: ${({ position }) => (position === "left" ? "right" : "left")};
 
     @media screen and (max-width: 800px) {
-      text-align: ${({ position }) => (position === "left" ? "left" : "right")};
+      align-self: ${({ position }) =>
+        position === "left" ? "flex-start" : "flex-end"};
     }
   }
 
@@ -73,7 +75,7 @@ export const TitleContainer = styled.div`
 
   > p {
     color: #7d7d7d;
-    font-size: clamp(12px, 1.2vw, 14px);
+    font-size: clamp(14px, 1.2vw, 16px);
     line-height: 23px;
     max-width: 461px;
     text-align: center;

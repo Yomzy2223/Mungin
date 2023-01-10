@@ -5,6 +5,11 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Footer = () => {
+  const scrollTo = (id) => {
+    let element = document.getElementById(id);
+    element.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     // parent container
     <div className="bg-[#333333] w-full text-[#FFFFFF] pb-6">
@@ -13,6 +18,7 @@ const Footer = () => {
       {/* className=" text-center font-semibold text-2xl md:font-medium" */}
       {/* className=" w-1/3 text-center md:text-left " className="w-1/3
       flextext-center flex-col " className="md:w-1/3 text-center flex flex-col" */}
+
       <FooterContainer>
         <Top>
           <img src={logo} className="mb-6" alt="mungin" />
@@ -32,18 +38,25 @@ const Footer = () => {
           {/* about us */}
           <div>
             <h2 className="mb-4 text-xl font-semibold">About us</h2>
-            <Details className=" pt:6 text-left my-2 font-light">
+            <Details
+              className=" pt:6 text-left my-2 font-light"
+              onClick={() => scrollTo("our-mission")}
+            >
               Our Mission
             </Details>
             {/* <Details className="text-left my-2 font-light"> */}
             <Details
-            // href="https://www.newsnow.com/ng/Economy/Agriculture"
-            // target="_blank"
+              // href="https://www.newsnow.com/ng/Economy/Agriculture"
+              // target="_blank"
+              onClick={() => scrollTo("news-articles")}
             >
               News & Articles
             </Details>
             {/* </Details> */}
-            <Details className=" text-left my-2 font-light">
+            <Details
+              className=" text-left my-2 font-light"
+              onClick={() => scrollTo("work-progress")}
+            >
               Working process
             </Details>
           </div>
@@ -106,6 +119,8 @@ export const Body = styled.div`
 `;
 
 export const Details = styled.p`
+  cursor: pointer;
+
   @media screen and (max-width: 890px) {
     display: none;
     text-align: left;
