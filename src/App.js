@@ -40,7 +40,7 @@ const App = () => {
         <WorkProgress />
         {/* <MiniCard /> */}
         <Mission />
-        <Articles />
+        {/* <Articles /> */}
         {/* <About />
         <Advert /> */}
       </AppContainer>
@@ -56,6 +56,6 @@ const AppContainer = styled.div`
   flex-flow: column;
   align-items: center;
   padding-inline: clamp(40px, 6vw, 120px);
-  gap: 120px;
+  gap: 60px;
   margin-bottom: 150px;
 `;

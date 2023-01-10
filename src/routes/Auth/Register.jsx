@@ -163,10 +163,10 @@ const Register = () => {
     <Container className="flex ">
       {/* left container */}
       <LeftContainer>
-        <img src={cocoa} className="h-max bg-contain" alt="cocoa" />
+        <img src={cocoa} alt="cocoa" />
       </LeftContainer>
       {/* right container */}
-      <RightContainer className="md:w-1/2 sm:w-full container mx-auto mt-10 pb-6">
+      <RightContainer>
         {/* error message */}
 
         {/* {formErrors.length === 0 ? <div className='flex w-4/5 justify-center '><p className='p-2 px-4 bg-red-500 rounded-lg text-white font-semibold animate-pulse'>Failed 😔 </p></div> :null} */}
@@ -440,11 +440,10 @@ export default Register;
 
 export const Container = styled.div`
   display: flex;
-  gap: clamp(20px, 3vw, 32px);
 
-  @media screen and (min-width: 700px) {
+  /* @media screen and (min-width: 700px) {
     padding-right: clamp(20px, 3vw, 32px);
-  }
+  } */
 `;
 
 export const LeftContainer = styled.div`
@@ -462,15 +461,19 @@ export const LeftContainer = styled.div`
 `;
 
 export const RightContainer = styled.div`
+  display: flex;
+  flex-flow: column;
+  width: 50%;
+  padding-inline: clamp(20px, 3vw, 32px);
+
   input,
   button,
   select {
     width: 100%;
   }
 
-  max-width: 85%;
-
   @media screen and (max-width: 700px) {
+    width: 100%;
     background-image: url("../../assets/cocoa.png");
     background: image(cocoa);
   }

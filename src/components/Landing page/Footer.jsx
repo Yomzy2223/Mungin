@@ -29,7 +29,8 @@ const Footer = () => {
               The Agricultural Intelligence Platform
             </h2>
             <Details className="mb-4 font-light">
-              Growing agricultural data for immediate impact.
+              We build software that empowers agricultural services. Effectively
+              integrating their data, decision, and operation.
             </Details>
             <Details className="text-sm">
               © 2021 Mungin. All rights reserved

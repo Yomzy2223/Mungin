@@ -8,7 +8,7 @@ const WorkProgress = () => {
   return (
     <Container id="work-progress">
       <Top>
-        <p>THE NEED OF TOMORROW</p>
+        <p>THE NEEDS OF TOMORROW</p>
         <p>Delivered Today</p>
       </Top>
       <Main>

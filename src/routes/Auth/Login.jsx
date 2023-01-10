@@ -106,11 +106,11 @@ const Login = () => {
     <Container className="flex ">
       {/* <pre>{JSON.stringify(formValues,undefined,2)}</pre> */}
       {/* left container */}
-      <LeftContainer className="sm:hidden md:block">
+      <LeftContainer>
         <img src={cocoa} className="h-max bg-contain" alt="cocoa" />
       </LeftContainer>
       {/* right container */}
-      <RightContainer className="md:w-1/2 sm:w-full container mx-auto mt-10">
+      <RightContainer>
         <Link to={"/"}>
           <img src={logo} width={150} alt="Mungin" />
         </Link>
@@ -179,9 +179,9 @@ const Login = () => {
           </div>
         ) : (
           <div className="flex w-4/5 justify-center">
-            <p className="p-2 bg-[#c22a2a] rounded-lg text-white animate-pulse font-semibold px-4">
+            {/* <p className="p-2 bg-[#c22a2a] rounded-lg text-white animate-pulse font-semibold px-4">
               {Message}{" "}
-            </p>
+            </p> */}
           </div>
         )}
       </RightContainer>
@@ -193,11 +193,6 @@ export default Login;
 
 export const Container = styled.div`
   display: flex;
-  gap: clamp(20px, 3vw, 32px);
-
-  @media screen and (min-width: 700px) {
-    padding-right: clamp(20px, 3vw, 32px);
-  }
 `;
 
 export const LeftContainer = styled.div`
@@ -215,15 +210,17 @@ export const LeftContainer = styled.div`
 `;
 
 export const RightContainer = styled.div`
+  width: 50%;
+  padding-inline: clamp(20px, 3vw, 32px);
+
   input,
   button,
   select {
     width: 100%;
   }
 
-  max-width: 85%;
-
   @media screen and (max-width: 700px) {
+    width: 100%;
     background-image: url("../../assets/cocoa.png");
     background: image(cocoa);
   }
