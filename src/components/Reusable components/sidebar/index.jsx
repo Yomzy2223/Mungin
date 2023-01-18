@@ -3,12 +3,24 @@ import styled from "styled-components";
 import { MunginLogo } from "../../../assets/images";
 import { sidebarList } from "../../../utils/config";
 import SidebarList from "./SidebarList";
+import { IoClose } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
-const Sidebar = () => {
+const Sidebar = ({ desktop, setOpen }) => {
   return (
-    <SidebarContainer>
+    <SidebarContainer $desktop={desktop}>
       <Top>
-        <img src={MunginLogo} alt="" />
+        {desktop ? (
+          <Link to="/">
+            <img src={MunginLogo} alt="" />
+          </Link>
+        ) : (
+          <IoClose
+            size={24}
+            onClick={() => setOpen(false)}
+            style={{ cursor: "pointer" }}
+          />
+        )}
       </Top>
       <Middle>
         {sidebarList.map((list, index) => (
@@ -17,6 +29,7 @@ const Sidebar = () => {
             text={list.text}
             Icon={list.icon}
             link={list.path}
+            onClick={() => setOpen(false)}
           />
         ))}
       </Middle>
@@ -41,9 +54,16 @@ export const SidebarContainer = styled.div`
   ::-webkit-scrollbar {
     display: none;
   }
+
+  @media screen and (max-width: 700px) {
+    display: ${({ $desktop }) => $desktop && "none"};
+  }
 `;
 
 export const Top = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0px;
   padding: 32px 48px;
   border-bottom: 1px solid #ebebeb;
 `;

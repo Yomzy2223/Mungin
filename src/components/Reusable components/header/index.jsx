@@ -1,16 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { profileImg } from "../../../assets/images";
 import { MdKeyboardArrowLeft, MdKeyboardArrowDown } from "react-icons/md";
+import { HiOutlineMenu } from "react-icons/hi";
 import { Link } from "react-router-dom";
+import MobileSidebar from "../sidebar/MobileSidebar";
 
 const DetailsHeader = ({ title }) => {
+  const [openSidebar, setOpenSidebar] = useState(false);
+
   return (
     <Container>
       <Top>
-        <Link to="/">
-          <MdKeyboardArrowLeft /> Back to home
+        <Link to="/database">
+          <MdKeyboardArrowLeft /> Back
         </Link>
+        <MenuIcon
+          onClick={() => setOpenSidebar(true)}
+          style={{ cursor: "pointer" }}
+        >
+          <HiOutlineMenu size={24} />
+        </MenuIcon>
+        <MobileSidebar open={openSidebar} setOpen={setOpenSidebar} />
         <span>
           <img src={profileImg} alt="profile" />
           <MdKeyboardArrowDown />
@@ -38,6 +49,7 @@ export const Container = styled.div`
 export const Top = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding-block: 40px 35px;
 
   a,
@@ -45,15 +57,23 @@ export const Top = styled.div`
     display: flex;
     align-items: center;
     text-decoration: none;
+    color: #888888;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+  }
 
-    :nth-of-type(1) {
-      color: #888888;
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 20px;
+  @media screen and (max-width: 700px) {
+    a {
+      display: none;
     }
+  }
+`;
 
-    :nth-of-type(2) {
-    }
+export const MenuIcon = styled.div`
+  display: block;
+
+  @media screen and (min-width: 701px) {
+    display: none;
   }
 `;

@@ -30,7 +30,7 @@ const DetailsLayout = () => {
 
   return (
     <DetailsContainer>
-      <Sidebar />
+      <Sidebar desktop />
       <ContentWrapper>
         <DetailsHeader title={title} />
         <Outlet />

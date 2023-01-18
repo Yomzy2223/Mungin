@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import styled from "styled-components";
 
-const SidebarList = ({ Icon, text, link }) => {
+const SidebarList = ({ Icon, text, link, onClick }) => {
   const [hovered, setHovered] = useState(false);
 
   const location = useLocation();
@@ -15,6 +15,7 @@ const SidebarList = ({ Icon, text, link }) => {
     <SidebarListContainer
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
+      onClick={onClick}
     >
       <NavLink to={to} style={({ isActive }) => (isActive ? activeStyle : {})}>
         <IconWrapper>
