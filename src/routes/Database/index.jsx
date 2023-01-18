@@ -9,6 +9,7 @@ import { AiOutlineMore } from "react-icons/ai";
 import ModalMain from "../../components/Reusable components/ModalMain";
 import { Link } from "react-router-dom";
 import { getCrops } from "../../services/auth.service";
+import AnalyzeModal from "../../components/Reusable components/AnalyzeModal";
 
 const Database = () => {
   const [open, setOpen] = useState(false);
@@ -44,10 +45,11 @@ const Database = () => {
         </Top>
         <Middle>
           {open && <ModalMain closeModal={setOpen} />}
+          {/* <AnalyzeModal /> */}
           <MiddleLeft>
             <span>Show</span>
             <span>
-              10 <MdOutlineKeyboardArrowDown />
+              {crops?.length} <MdOutlineKeyboardArrowDown />
             </span>
           </MiddleLeft>
           <MiddleRight>
@@ -57,13 +59,17 @@ const Database = () => {
                 <CiSearch />
               </span>
             </div>
-            <button onClick={setOpen}>Analyze Crop Yield</button>
+            <button
+            //  onClick={setOpen}
+            >
+              Analyze Crop Yield
+            </button>
           </MiddleRight>
         </Middle>
       </Header>
       <Main>
         <div>
-          <span>10</span>
+          <span> {crops?.length}</span>
           Search results
         </div>
         <table>
@@ -88,22 +94,20 @@ const Database = () => {
             </tr>
           </thead>
           <tbody>
-            {crops.map((crop) => (
-              <tr>
+            {crops?.map((crop, index) => (
+              <tr key={index}>
                 <CropName>
-                  <Link to={`/database/crop-profile?id=${crop.id}`}>
-                    {crop.cropName}
+                  <Link to={`/database/${crop?.cropName}/profile`}>
+                    {crop?.cropName}
                   </Link>
                 </CropName>
                 <td>
-                  <Link to={`/database/crop-profile?id=${crop.id}`}>
+                  <Link to={`/database/${crop?.cropName}/profile`}>
                     {"----"}
                   </Link>
                 </td>
                 <td>
-                  <Link to={`/database/crop-profile?id=${crop.id}`}>
-                    {"--"}
-                  </Link>
+                  <Link to={`/database/${crop?.cropName}/profile`}>{"--"}</Link>
                 </td>
                 <More>
                   <AiOutlineMore />
@@ -116,6 +120,12 @@ const Database = () => {
     </Container>
   );
 };
+
+{
+  /* <CropName>
+  <Link to={`/database/crop-profile?id=${crop?.id}`}>{crop?.cropName}</Link>
+</CropName>; */
+}
 
 export default Database;
 
@@ -227,9 +237,10 @@ export const Main = styled.div`
   }
   td {
     padding-block: 16px;
+    text-transform: capitalize;
   }
 `;
-export const More = styled.div`
+export const More = styled.td`
   padding-top: 22px;
   float: right;
 `;

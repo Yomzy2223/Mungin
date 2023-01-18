@@ -32,7 +32,7 @@ const Navbar = () => {
           >
             Our Mission
           </NavList>
-          <NavList onClick={() => scrollTo("news-articles")}>News</NavList>
+          {/* <NavList onClick={() => scrollTo("news-articles")}>News</NavList> */}
           <Link to={"/register"}>
             <button className="text-[#375A1A] whitespace-nowrap">
               Join Waiting List

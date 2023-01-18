@@ -73,7 +73,7 @@ export const MissionContainer = styled.div`
   padding-top: 30px;
 
   @media screen and (max-width: 420px) {
-    transform: scale(0.7);
+    transform: scale(0.8);
   }
 `;
 

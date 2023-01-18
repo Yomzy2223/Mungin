@@ -8,7 +8,7 @@ const Hero = () => {
     <div className="flex md:flex-row justify-between pb-6 flex-col sm:items-center">
       {/* left container */}
       <div className="md:w-1/2 flex flex-col mt-12 md:text-left text-center w-full">
-        <h1 className="text-[#313131] text-5xl font-bold">
+        <h1 className="text-[#313131] text-4xl font-bold">
           Growing <span className="text-[#83BF4F]">Agricultural</span> Data For
           immediate Impact
         </h1>
@@ -32,7 +32,7 @@ const Hero = () => {
       </div>
 
       {/* right container */}
-      <div className="mt-6 pt-10 mb-8 pl-6 ">
+      <div className="mt-6 pt-10 mb-8  ">
         <img src={green} alt="right" />
       </div>
     </div>

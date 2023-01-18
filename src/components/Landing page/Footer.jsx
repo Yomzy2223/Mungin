@@ -46,13 +46,13 @@ const Footer = () => {
               Our Mission
             </Details>
             {/* <Details className="text-left my-2 font-light"> */}
-            <Details
+            {/* <Details
               // href="https://www.newsnow.com/ng/Economy/Agriculture"
               // target="_blank"
               onClick={() => scrollTo("news-articles")}
             >
               News & Articles
-            </Details>
+            </Details> */}
             {/* </Details> */}
             <Details
               className=" text-left my-2 font-light"

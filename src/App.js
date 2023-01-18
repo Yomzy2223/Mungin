@@ -55,7 +55,7 @@ const AppContainer = styled.div`
   display: flex;
   flex-flow: column;
   align-items: center;
-  padding-inline: clamp(40px, 6vw, 120px);
+  padding-inline: clamp(20px, 6vw, 100px);
   gap: 60px;
   margin-bottom: 150px;
 `;
