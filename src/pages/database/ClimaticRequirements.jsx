@@ -7,14 +7,16 @@ import { storeTitle } from "../../redux/slices";
 import { store } from "../../redux/store";
 
 const ClimaticRequirements = () => {
-  const cropInfo = useSelector((store) => store.database);
+  const { selectedCropDetails } = useSelector((store) => store.database);
 
   useEffect(() => {
     store.dispatch(storeTitle("Climatic Requirement"));
   }, []);
 
-  const climaticReqObj = cropInfo?.cropInfo[0]?.climaticRequirement;
-  const climaticReqArr = climaticReqObj ? Object.entries(climaticReqObj) : [];
+  const climaticsObj = selectedCropDetails.climatics
+    ? selectedCropDetails?.climatics[0]
+    : {};
+  const climaticReqArr = climaticsObj ? Object.entries(climaticsObj) : [];
 
   let listArr = climaticReqArr?.filter(
     (each) => each[0] !== "id" && each[0] !== "atmosphericGas"

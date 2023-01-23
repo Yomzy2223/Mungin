@@ -6,7 +6,7 @@ import SidebarList from "./SidebarList";
 import { IoClose } from "react-icons/io5";
 import { Link } from "react-router-dom";
 
-const Sidebar = ({ desktop, setOpen }) => {
+const Sidebar = ({ desktop, setOpen = () => {} }) => {
   return (
     <SidebarContainer $desktop={desktop}>
       <Top>
@@ -25,6 +25,7 @@ const Sidebar = ({ desktop, setOpen }) => {
       <Middle>
         {sidebarList.map((list, index) => (
           <SidebarList
+            n
             key={index}
             text={list.text}
             Icon={list.icon}

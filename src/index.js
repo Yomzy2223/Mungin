@@ -24,7 +24,6 @@ import SoilReq from "./routes/Crop Profile/SoilReq";
 // import PlantOperations from "./routes/Crop Profile/PlantOperations";
 import CProfile from "./components/Reusable components/CProfile";
 import { Toaster } from "react-hot-toast";
-import Database from "./routes/Database";
 import Test from "./pages/Test";
 import DetailsLayout from "./layout/DetailsLayout";
 import Profile from "./pages/database/Profile";
@@ -43,6 +42,7 @@ import CropManagement from "./pages/database/CropManagement";
 import PlantOperations from "./pages/database/PlantOperations";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
+import Database from "./pages/database";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

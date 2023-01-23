@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const Empty = () => {
-  return <EmptyContainer>No data recieved from the backend</EmptyContainer>;
+  return <EmptyContainer>No Information</EmptyContainer>;
 };
 
 export default Empty;

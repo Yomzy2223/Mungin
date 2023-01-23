@@ -6,16 +6,17 @@ import { storeTitle } from "../../redux/slices";
 import { store } from "../../redux/store";
 
 const ProductionFacts = () => {
-  const cropInfo = useSelector((store) => store.database);
+  const { selectedCropDetails } = useSelector((store) => store.database);
 
   useEffect(() => {
     store.dispatch(storeTitle("Production Facts"));
   }, []);
 
-  let productionFactsObj = cropInfo?.cropInfo[0]?.productionFact;
-  let productionFactsArr = productionFactsObj
-    ? Object.entries(productionFactsObj)
-    : [];
+  const factObj = selectedCropDetails.facts
+    ? selectedCropDetails?.facts[0]
+    : {};
+
+  let productionFactsArr = factObj ? Object.entries(factObj) : [];
   let productionFacts = productionFactsArr?.filter(
     (each) => each[0] !== "id" && each[0] !== "index"
   );

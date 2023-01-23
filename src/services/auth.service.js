@@ -103,7 +103,19 @@ export const registerUser = async (formData) => {
 export const getCrops = async () => {
   try {
     let response = await client.get("/crop/returns");
-    console.log(response);
+    return response.data;
+  } catch (e) {
+    if (e.message.toString() === "Network Error")
+      toast.error("Please check your internet connection");
+    else toast.error(e.response.data);
+    console.log(e);
+    return e.response.data;
+  }
+};
+
+export const getCropsDetails = async () => {
+  try {
+    let response = await client.get("/crop/fetch");
     return response.data;
   } catch (e) {
     if (e.message.toString() === "Network Error")

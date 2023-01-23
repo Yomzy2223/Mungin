@@ -7,16 +7,20 @@ import { storeTitle } from "../../redux/slices";
 import { store } from "../../redux/store";
 
 const PlantOperations = () => {
-  const cropInfo = useSelector((store) => store.database);
+  const { selectedCropDetails } = useSelector((store) => store.database);
 
   useEffect(() => {
     store.dispatch(storeTitle("Plant Operations"));
   }, []);
 
-  const operationsObj = cropInfo?.cropInfo[0]?.operations;
+  const operationsObj = selectedCropDetails.operations
+    ? selectedCropDetails?.operations[0]
+    : {};
   const operationsArr = operationsObj ? Object.entries(operationsObj) : [];
 
-  let listArr = operationsArr?.filter((each) => each[0] !== "id");
+  let listArr = operationsArr?.filter(
+    (each) => each[0] !== "id" && each[0] !== "postHarvestOps"
+  );
 
   const list = listArr.map((list) => ({ property: [list[0]], value: list[1] }));
 

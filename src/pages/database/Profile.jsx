@@ -5,7 +5,7 @@ import { storeTitle } from "../../redux/slices";
 import { store } from "../../redux/store";
 
 const Profile = () => {
-  const cropInfo = useSelector((store) => store.database);
+  const { selectedCrop } = useSelector((store) => store.database);
 
   useEffect(() => {
     store.dispatch(storeTitle("Profile"));
@@ -13,16 +13,16 @@ const Profile = () => {
 
   // This formats the list to display under the image
   let list = [
-    { property: "common name", value: cropInfo.cropInfo[0]?.commonName },
-    { property: "crop name", value: cropInfo.cropInfo[0]?.cropName },
+    { property: "common name", value: selectedCrop[0]?.commonName },
+    { property: "crop name", value: selectedCrop[0]?.cropName },
     {
       property: "scientific name",
-      value: cropInfo.cropInfo[0]?.scientificName,
+      value: selectedCrop[0]?.scientificName,
     },
-    { property: "yeild rate", value: cropInfo.cropInfo[0]?.yieldRate },
+    { property: "yeild rate", value: selectedCrop[0]?.yieldRate },
   ];
 
-  return <ImageWithLabel image={cropInfo.cropInfo[0]?.imageUrl} list={list} />;
+  return <ImageWithLabel image={selectedCrop[0]?.imageUrl} list={list} />;
 };
 
 export default Profile;

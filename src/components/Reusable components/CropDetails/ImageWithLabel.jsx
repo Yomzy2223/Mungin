@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 const ImageWithLabel = ({ image, list, imgStyle }) => {
-  console.log(image);
   return (
     <ImageLabelContainer>
       {image && <img src={image} alt="crop" style={imgStyle} />}
@@ -12,7 +11,7 @@ const ImageWithLabel = ({ image, list, imgStyle }) => {
             <Property>
               <span>{each?.property}</span>
             </Property>
-            <span>{each?.value}</span>
+            <span>{each.value ? each.value : "----"}</span>
           </List>
         ))}
       </Label>
@@ -27,7 +26,7 @@ export const ImageLabelContainer = styled.div`
   flex-flow: column;
   gap: 24px;
 
-  img {
+  > img {
     height: 100%;
     object-fit: contain;
     width: max-content;
@@ -44,30 +43,21 @@ export const Label = styled.div`
 
 export const List = styled.div`
   display: flex;
-  /* justify-content: space-between; */
-  /* gap: 60px; */
-  /* max-width: 500px; */
 
   > span {
     font-size: 12px;
     border-radius: 4px;
-    width: max-content;
+    /* width: max-content; */
     height: max-content;
     text-align: justify;
 
     color: #313131;
     text-transform: capitalize;
     text-transform: capitalize;
-
-    /* :nth-of-type(1) {
-      text-transform: capitalize;
-      color: #75a843;
-      background-color: #e2efd5;
-      font-weight: 700;
-      padding: 8px;
-    }
-    :nth-of-type(2) {
-    } */
+  }
+  @media screen and (max-width: 250px) {
+    flex-flow: column;
+    gap: 16px;
   }
 `;
 

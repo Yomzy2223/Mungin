@@ -3,18 +3,31 @@ import { createSlice } from "@reduxjs/toolkit";
 const database = createSlice({
   name: "cropInfo",
   initialState: {
-    cropInfo: {},
+    selectedCrop: {},
+    cropsDetails: {},
+    selectedCropDetails: {},
     title: "",
   },
   reducers: {
-    setDatabaseToStore: (state, action) => {
-      state.cropInfo = action.payload;
+    storeSelectedCrop: (state, action) => {
+      state.selectedCrop = action.payload;
     },
     storeTitle: (state, action) => {
       state.title = action.payload;
+    },
+    storeCropsDetails: (state, action) => {
+      state.cropsDetails = action.payload;
+    },
+    storeSelectedCropDetails: (state, action) => {
+      state.selectedCropDetails = action.payload;
     },
   },
 });
 
 export const databaseReducer = database.reducer;
-export const { setDatabaseToStore, storeTitle } = database.actions;
+export const {
+  storeSelectedCrop,
+  storeTitle,
+  storeCropsDetails,
+  storeSelectedCropDetails,
+} = database.actions;
