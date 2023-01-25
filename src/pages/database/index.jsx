@@ -11,9 +11,11 @@ import { Link } from "react-router-dom";
 import { getCrops, getCropsDetails } from "../../services/auth.service";
 import { store } from "../../redux/store";
 import { storeCropsDetails } from "../../redux/slices";
+import Modal1 from "../../layout/Modal1";
+import Analyzer from "../../components/Reusable components/CropDetails/Analyzer";
 
 const Database = () => {
-  // const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
   const [crops, setCrops] = useState([]);
 
   useEffect(() => {
@@ -23,7 +25,8 @@ const Database = () => {
 
   const handleCrops = async () => {
     let crops = await getCrops();
-    setCrops(crops.map((crop, index) => ({ ...crop, id: index + 11 })));
+    // setCrops(crops.map((crop, index) => ({ ...crop, id: index + 11 })));
+    setCrops(crops);
     console.log(crops);
   };
 
@@ -44,8 +47,9 @@ const Database = () => {
           </ProfileImg>
         </Top>
         <Middle>
-          {/* {open && <ModalMain closeModal={setOpen} />} */}
-          {/* <AnalyzeModal /> */}
+          <Modal1 open={open} onClose={() => setOpen(false)}>
+            <Analyzer setOpen={setOpen} />
+          </Modal1>
           <MiddleLeft>
             <span>Show</span>
             <span>
@@ -59,11 +63,7 @@ const Database = () => {
                 <CiSearch />
               </span>
             </div>
-            <button
-            //  onClick={setOpen}
-            >
-              Analyze Crop Yield
-            </button>
+            <button onClick={setOpen}>Analyze Crop Yield</button>
           </MiddleRight>
         </Middle>
       </Header>

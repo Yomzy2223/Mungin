@@ -1,24 +1,14 @@
 import React, { useEffect } from "react";
-import { plantation } from "../assets/images";
-import ImageList from "../components/Reusable components/CropDetails/ImageList";
-import Sidebar from "../components/Reusable components/sidebar/index";
-import DetailsLayout from "../layout/DetailsLayout";
-import { getCrops } from "../services/auth.service";
+import Analyzer from "../components/Reusable components/CropDetails/Analyzer";
+import ModalMain from "../components/Reusable components/ModalMain";
+import Modal1 from "../layout/Modal1";
 
 const Test = () => {
-  useEffect(() => {
-    getCrops();
-  }, []);
-
   return (
     <div>
-      {/* <Sidebar /> */}
-      <DetailsLayout>Hello from details layout</DetailsLayout>
-      {/* <ImageList
-        title="Leaf Blight"
-        image={plantation}
-        text="hello from platations"
-      /> */}
+      <Modal1 open={true}>
+        <Analyzer />
+      </Modal1>
     </div>
   );
 };

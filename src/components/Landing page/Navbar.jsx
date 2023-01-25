@@ -35,7 +35,7 @@ const Navbar = () => {
           {/* <NavList onClick={() => scrollTo("news-articles")}>News</NavList> */}
           <Link to={"/register"}>
             <button className="text-[#375A1A] whitespace-nowrap">
-              Join Waiting List
+              Join Us
             </button>
           </Link>
           <Link to={"/database"}>
@@ -63,7 +63,7 @@ const Navbar = () => {
         <button>Process</button>
         <button>Our Mission</button>
         <button>News</button>
-        <button className="text-[#375A1A]">Join Waiting List</button>
+        <button className="text-[#375A1A]">Join Us</button>
         <button className="bg-[#17233C] p-3 text-white px-4 rounded-md">
           Check Our Database
         </button>

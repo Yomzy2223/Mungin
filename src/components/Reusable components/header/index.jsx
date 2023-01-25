@@ -11,22 +11,24 @@ const DetailsHeader = ({ title }) => {
 
   return (
     <Container>
-      <Top>
-        <Link to="/database">
-          <MdKeyboardArrowLeft /> Back
-        </Link>
+      <TopContainer>
         <MenuIcon
           onClick={() => setOpenSidebar(true)}
           style={{ cursor: "pointer" }}
         >
           <HiOutlineMenu size={24} />
         </MenuIcon>
-        <MobileSidebar open={openSidebar} setOpen={setOpenSidebar} />
-        <span>
-          <img src={profileImg} alt="profile" />
-          <MdKeyboardArrowDown />
-        </span>
-      </Top>
+        <Top>
+          <Link to="/database">
+            <MdKeyboardArrowLeft /> Back
+          </Link>
+          <MobileSidebar open={openSidebar} setOpen={setOpenSidebar} />
+          <span>
+            <img src={profileImg} alt="profile" />
+            <MdKeyboardArrowDown />
+          </span>
+        </Top>
+      </TopContainer>
       <p>{title}</p>
     </Container>
   );
@@ -46,11 +48,18 @@ export const Container = styled.div`
   }
 `;
 
+export const TopContainer = styled.div`
+  display: flex;
+  padding-block: 40px 35px;
+  align-items: center;
+  gap: 10px;
+`;
+
 export const Top = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-block: 40px 35px;
+  width: 100%;
 
   a,
   span {
@@ -63,11 +72,11 @@ export const Top = styled.div`
     line-height: 20px;
   }
 
-  @media screen and (max-width: 700px) {
+  /* @media screen and (max-width: 700px) {
     a {
       display: none;
     }
-  }
+  } */
 `;
 
 export const MenuIcon = styled.div`

@@ -26,7 +26,7 @@ const Hero = () => {
             </button>
           </Link>
           <Link to={"/register"}>
-            <button className="text-[#375A1A]">Join Waiting List</button>
+            <button className="text-[#375A1A]">Join Us</button>
           </Link>
         </div>
       </div>

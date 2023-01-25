@@ -37,19 +37,19 @@ const DetailsLayout = () => {
 
   const handleCrop = async () => {
     const crops = await getCrops();
-    const cropsWithId = crops.map((crop, index) => ({
+    const cropsWithId = crops?.map((crop, index) => ({
       ...crop,
       id: index + 11,
     }));
-    let selectedCrop = cropsWithId.filter(
-      (each) => each.id.toString() === cropID
+    let selectedCrop = cropsWithId?.filter(
+      (each) => each?.id?.toString() === cropID
     );
     // console.log(selectedCrop);
     store.dispatch(storeSelectedCrop(selectedCrop));
   };
 
   const handleDetails = () => {
-    let categoriesArr = Object.entries(cropsDetails);
+    let categoriesArr = Object.entries(cropsDetails ? cropsDetails : {});
     // console.log(categoriesArr);
     let selected = categoriesArr.map((category) => ({
       [category[0]]: category[1]?.filter(
