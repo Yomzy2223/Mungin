@@ -1,15 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { MdKeyboardArrowLeft } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams, useLocation } from "react-router-dom";
 import styled from "styled-components";
+import { analyzeCrop } from "../../../services/auth.service";
 
 const Analyzer = ({ setOpen }) => {
   const [analysed, setAnalysed] = useState(false);
+  const [result, setResult] = useState("");
+  const [params, setParams] = useSearchParams();
 
-  const handleAnalysis = (e) => {
+  const location = useLocation();
+
+  const handleSubmit = (e) => {
     e.preventDefault();
+    let required = {
+      rainfall: Number(e.target[2].value) * 1.0,
+      soil: e.target[1].value,
+      crop: e.target[0].value,
+    };
+    setParams(required);
     setAnalysed(true);
   };
+
+  const handleAnalysis = async () => {
+    let response = await analyzeCrop(location.search);
+    setResult(response);
+  };
+
+  useEffect(() => {
+    if (analysed === true) handleAnalysis();
+  }, [analysed]);
 
   return (
     <AnalyzerContainer>
@@ -26,7 +46,7 @@ const Analyzer = ({ setOpen }) => {
             </p>
           )}
         </Top>
-        <Middle onSubmit={handleAnalysis}>
+        <Middle onSubmit={handleSubmit}>
           {!analysed && (
             <Input>
               <p>Crop Name</p>
@@ -46,15 +66,17 @@ const Analyzer = ({ setOpen }) => {
               disabled={analysed}
               required
             />
-            {analysed && (
+            {/* {analysed && (
               <Result>
                 <span>Recommendation: (Loamy Soil)</span>
                 <span>
                   Apply organic fertilizer, plant cover crop like cowpea,
                   practice mulching.
                 </span>
+                <span>Result:</span>
+                <span>{result[1]}</span>
               </Result>
-            )}
+            )} */}
           </Input>
           <Input>
             <p>Rainfall Value</p>
@@ -66,11 +88,13 @@ const Analyzer = ({ setOpen }) => {
             />
             {analysed && (
               <Result>
-                <span>Recommendation: (400mm/annum)</span>
-                <span>
+                {/* <span>Recommendation: (400mm/annum)</span> */}
+                <span>Result:</span>
+                {/* <span>
                   You have a 100mm deficit. Practice irrigation, plant cover
                   crops or mulching.
-                </span>
+                </span> */}
+                <span>{result}</span>
               </Result>
             )}
           </Input>
@@ -87,7 +111,8 @@ export const AnalyzerContainer = styled.div`
   padding: 38px 24px;
   border-radius: 12px;
   background-color: #ffffff;
-  max-width: 440px;
+  width: 440px;
+  max-width: 90vw;
 `;
 
 export const Back = styled.div`

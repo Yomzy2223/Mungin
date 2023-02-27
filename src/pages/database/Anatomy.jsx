@@ -5,16 +5,14 @@ import { storeTitle } from "../../redux/slices";
 import { store } from "../../redux/store";
 
 const Anatomy = () => {
-  const { selectedCropDetails } = useSelector((store) => store.database);
+  const { cropDetails } = useSelector((store) => store.database);
 
   useEffect(() => {
     store.dispatch(storeTitle("Anatomy"));
   }, []);
 
-  const anatomyObj = selectedCropDetails.anatomies
-    ? selectedCropDetails?.anatomies[0]
-    : {};
-  const anatomyArr = anatomyObj ? Object.entries(anatomyObj) : [];
+  const anatomyObj = cropDetails.anatomy ? cropDetails?.anatomy : {};
+  const anatomyArr = Object.entries(anatomyObj);
 
   let listArr = anatomyArr?.filter(
     (each) => each[0] !== "id" && each[0] !== "structure"

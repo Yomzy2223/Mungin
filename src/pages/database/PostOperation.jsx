@@ -6,21 +6,23 @@ import { storeTitle } from "../../redux/slices";
 import { store } from "../../redux/store";
 
 const PostOperation = () => {
-  const { selectedCropDetails } = useSelector((store) => store.database);
+  const { cropDetails } = useSelector((store) => store.database);
 
   useEffect(() => {
     store.dispatch(storeTitle("Post Operations"));
   }, []);
 
-  const operationsObj = selectedCropDetails.operations
-    ? selectedCropDetails?.operations[0]
+  const operationsObj = cropDetails.operations
+    ? cropDetails?.operations.postHarvestOps
     : {};
+
+  console.log(operationsObj?.split(","));
 
   return (
     <PostHarvestContainer>
       <ListWithTitle
-        title={`The post-haarvest operations of ${operationsObj?.cropName} include:`}
-        list={[...operationsObj.postHarvestOps.split(",")]}
+        title={`The post-haarvest operations of ${cropDetails?.cropName} include:`}
+        list={[...operationsObj?.split(",")]}
       />
     </PostHarvestContainer>
   );

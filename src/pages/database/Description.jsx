@@ -6,14 +6,14 @@ import { storeTitle } from "../../redux/slices";
 import { store } from "../../redux/store";
 
 const Description = () => {
-  const { selectedCropDetails } = useSelector((store) => store.database);
+  const { cropDetails } = useSelector((store) => store.database);
 
   useEffect(() => {
     store.dispatch(storeTitle("Description"));
   }, []);
 
-  const description = selectedCropDetails.descriptions
-    ? selectedCropDetails?.descriptions[0]
+  const description = cropDetails.cropDescription
+    ? cropDetails.cropDescription
     : {};
 
   const descArray = Object.entries(description ? description : [])?.filter(

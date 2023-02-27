@@ -3,12 +3,11 @@ import { Link } from "react-router-dom";
 import logo from "../../assets/logo-white-bg.png";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import styled from "styled-components";
+import MobileSidebarCont from "../containers/MobileSidebarConst";
+import MobileSidebar from "../Reusable components/sidebar/MobileSidebar";
+
 const Navbar = () => {
-  const [nav, setnav] = useState(false);
-  // reverse polarity of nav
-  const handleNav = () => {
-    setnav(!nav);
-  };
+  const [open, setOpen] = useState(false);
 
   const scrollTo = (id) => {
     let element = document.getElementById(id);
@@ -46,28 +45,12 @@ const Navbar = () => {
         </div>
       </div>
       {/* hamburger menu */}
-      <div
-        className="sm:block absolute right-10 md:hidden "
-        onClick={handleNav}
-      >
-        {nav ? <AiOutlineClose size={30} /> : <AiOutlineMenu size={30} />}
+      <div className="sm:block absolute right-10 md:hidden ">
+        {<AiOutlineMenu size={24} onClick={() => setOpen(true)} />}
       </div>
-      {/* mobile-menu */}
-      <div
-        className={
-          nav
-            ? "bg-white top-[90px] flex items-center justify-center flex-col space-y-6 absolute right-0 left-0"
-            : "hidden"
-        }
-      >
-        <button>Process</button>
-        <button>Our Mission</button>
-        <button>News</button>
-        <button className="text-[#375A1A]">Join Us</button>
-        <button className="bg-[#17233C] p-3 text-white px-4 rounded-md">
-          Check Our Database
-        </button>
-      </div>
+      <MobileSidebarCont anchor="right" open={open} setOpen={setOpen}>
+        <MobileSidebar setOpen={setOpen} />
+      </MobileSidebarCont>
     </HeaderContainer>
   );
 };
@@ -77,6 +60,7 @@ export default Navbar;
 export const HeaderContainer = styled.div`
   width: 100%;
   padding-inline: clamp(40px, 6vw, 120px);
+  align-items: center;
 `;
 
 export const NavList = styled.p`

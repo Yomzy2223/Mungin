@@ -10,41 +10,41 @@ import ModalMain from "../../components/Reusable components/ModalMain";
 import { Link } from "react-router-dom";
 import { getCrops, getCropsDetails } from "../../services/auth.service";
 import { store } from "../../redux/store";
-import { storeCropsDetails } from "../../redux/slices";
+import { storeCropDetails } from "../../redux/slices";
 import Modal1 from "../../layout/Modal1";
 import Analyzer from "../../components/Reusable components/CropDetails/Analyzer";
 
 const Database = () => {
   const [open, setOpen] = useState(false);
   const [crops, setCrops] = useState([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     handleCrops();
-    handleCropsDetails();
   }, []);
 
   const handleCrops = async () => {
     let crops = await getCrops();
-    // setCrops(crops.map((crop, index) => ({ ...crop, id: index + 11 })));
     setCrops(crops);
-    console.log(crops);
   };
 
-  const handleCropsDetails = async () => {
-    let details = await getCropsDetails();
-    store.dispatch(storeCropsDetails(details));
-    console.log(details);
-  };
+  // const handleCropsDetails = async () => {
+  //   let details = await getCropsDetails();
+  //   store.dispatch(storeCropDetails(details));
+  //   console.log(details);
+  // };
 
   return (
     <Container>
       <Header>
         <Top>
-          <img src={logo} alt="" />
-          <ProfileImg>
+          <Link to="/">
+            <img src={logo} alt="" />
+          </Link>
+          {/* <ProfileImg>
             <img src={profileImg} alt="" />
             <MdOutlineKeyboardArrowDown />
-          </ProfileImg>
+          </ProfileImg> */}
         </Top>
         <Middle>
           <Modal1 open={open} onClose={() => setOpen(false)}>
@@ -58,10 +58,14 @@ const Database = () => {
           </MiddleLeft>
           <MiddleRight>
             <div>
-              <input type="text" placeholder="Search Crop State..." />
-              <span>
+              <input
+                type="text"
+                placeholder="Search crop..."
+                onChange={(e) => setSearch(e.target.value)}
+              />
+              {/* <span>
                 <CiSearch />
-              </span>
+              </span> */}
             </div>
             <button onClick={setOpen}>Analyze Crop Yield</button>
           </MiddleRight>
@@ -80,7 +84,7 @@ const Database = () => {
                   Crop <BsArrowDown />
                 </span>
               </td>
-              <td>
+              {/* <td>
                 <span>
                   Year <BsArrowDown />
                 </span>
@@ -90,18 +94,20 @@ const Database = () => {
                   Version
                   <BsArrowDown />
                 </span>
-              </td>
+              </td> */}
             </tr>
           </thead>
           <tbody>
-            {crops?.map((crop, index) => (
-              <tr key={index}>
-                <CropName>
-                  <Link to={`/database/${crop?.id}/profile`}>
-                    {crop?.cropName}
-                  </Link>
-                </CropName>
-                <td>
+            {crops
+              ?.filter((crop) => crop.cropName.includes(search))
+              ?.map((crop, index) => (
+                <tr key={index}>
+                  <CropName>
+                    <Link to={`/database/${crop?.id}/profile`}>
+                      {crop?.cropName}
+                    </Link>
+                  </CropName>
+                  {/* <td>
                   <Link to={`/database/${crop?.id}/profile`}>{"----"}</Link>
                 </td>
                 <td>
@@ -109,9 +115,9 @@ const Database = () => {
                 </td>
                 <More>
                   <AiOutlineMore />
-                </More>
-              </tr>
-            ))}
+                </More> */}
+                </tr>
+              ))}
           </tbody>
         </table>
       </Main>
@@ -187,6 +193,7 @@ export const MiddleRight = styled.div`
     max-width: 327px;
     min-width: 200px;
     width: 100%;
+    outline: none;
 
     @media screen and (max-width: 500px) {
       display: none;

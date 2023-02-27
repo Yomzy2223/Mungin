@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-const ImageWithLabel = ({ image, list, imgStyle }) => {
+const ImageWithLabel = ({ image, list, imgStyle, style }) => {
   return (
-    <ImageLabelContainer>
+    <ImageLabelContainer style={style}>
       {image && <img src={image} alt="crop" style={imgStyle} />}
       <Label>
         {list?.map((each, index) => (
@@ -25,12 +25,14 @@ export const ImageLabelContainer = styled.div`
   display: flex;
   flex-flow: column;
   gap: 24px;
+  height: inherit;
 
   > img {
     height: 100%;
     object-fit: contain;
     width: max-content;
     max-height: 334px;
+    max-width: 400px;
     border-radius: 8px;
   }
 `;
@@ -49,7 +51,6 @@ export const List = styled.div`
     border-radius: 4px;
     /* width: max-content; */
     height: max-content;
-    text-align: justify;
 
     color: #313131;
     text-transform: capitalize;

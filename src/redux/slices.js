@@ -4,7 +4,7 @@ const database = createSlice({
   name: "cropInfo",
   initialState: {
     selectedCrop: {},
-    cropsDetails: {},
+    cropDetails: {},
     selectedCropDetails: {},
     title: "",
   },
@@ -15,8 +15,8 @@ const database = createSlice({
     storeTitle: (state, action) => {
       state.title = action.payload;
     },
-    storeCropsDetails: (state, action) => {
-      state.cropsDetails = action.payload;
+    storeCropDetails: (state, action) => {
+      state.cropDetails = action.payload;
     },
     storeSelectedCropDetails: (state, action) => {
       state.selectedCropDetails = action.payload;
@@ -26,8 +26,8 @@ const database = createSlice({
 
 export const databaseReducer = database.reducer;
 export const {
-  storeSelectedCrop,
+  // storeSelectedCrop,
   storeTitle,
-  storeCropsDetails,
-  storeSelectedCropDetails,
+  storeCropDetails,
+  // storeSelectedCropDetails,
 } = database.actions;

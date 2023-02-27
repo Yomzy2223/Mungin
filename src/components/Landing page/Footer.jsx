@@ -3,6 +3,7 @@ import { BsArrowRightShort } from "react-icons/bs";
 import logo from "../../assets/logo-footer.png";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { MdEmail, MdCall, MdLocationOn } from "react-icons/md";
 
 const Footer = () => {
   const scrollTo = (id) => {
@@ -13,61 +14,40 @@ const Footer = () => {
   return (
     // parent container
     <div className="bg-[#333333] w-full text-[#FFFFFF] pb-6">
-      {/* content container */}
-      {/* className="pt-10 space-y-8 flex md:flex-row items-center flex-col md:justify-between mx-auto container " */}
-      {/* className=" text-center font-semibold text-2xl md:font-medium" */}
-      {/* className=" w-1/3 text-center md:text-left " className="w-1/3
-      flextext-center flex-col " className="md:w-1/3 text-center flex flex-col" */}
-
       <FooterContainer>
         <Top>
           <img src={logo} className="mb-6" alt="mungin" />
         </Top>
         <Body>
-          <div>
+          <SubContainer>
             <h2 className="mb-4 text-xl font-semibold">
               The Agricultural Intelligence Platform
             </h2>
-            <Details className="mb-4 font-light">
+            <Details className="mb-4 font-light" $hide>
               We build software that empowers agricultural services. Effectively
               integrating their data, decision, and operation.
             </Details>
-            <Details className="text-sm">
+            {/* <Details className="text-sm">
               © 2021 Mungin. All rights reserved
-            </Details>
-          </div>
-          {/* about us */}
-          <div>
+            </Details> */}
+          </SubContainer>
+          <SubContainer $hide>
             <h2 className="mb-4 text-xl font-semibold">About us</h2>
-            <Details
-              className=" pt:6 text-left my-2 font-light"
-              onClick={() => scrollTo("our-mission")}
-            >
+            <Details onClick={() => scrollTo("our-mission")}>
               Our Mission
             </Details>
-            {/* <Details className="text-left my-2 font-light"> */}
-            {/* <Details
-              // href="https://www.newsnow.com/ng/Economy/Agriculture"
-              // target="_blank"
-              onClick={() => scrollTo("news-articles")}
-            >
-              News & Articles
-            </Details> */}
-            {/* </Details> */}
-            <Details
-              className=" text-left my-2 font-light"
-              onClick={() => scrollTo("work-progress")}
-            >
+            <Details onClick={() => scrollTo("work-progress")}>
               Working process
             </Details>
-          </div>
-          {/* input form */}
-          <form>
+          </SubContainer>
+          <SubContainer>
             <h2 className="font-bold text-center pb-3 md:w-1/2 md:text-left">
-              News Letter
+              Contact Us
             </h2>
-            <div className="flex ">
-              <input
+            <Details>
+              <MdEmail />
+              hello@mungin.africa
+              {/* <input
                 className="rounded-l-sm pl-2 pr-10 py-2"
                 type="email"
                 placeholder="Email Address"
@@ -77,9 +57,16 @@ const Footer = () => {
                 className="bg-[#83BF4F] rounded-r-sm outline-[#83BF4F] text-white"
               >
                 <BsArrowRightShort size={35} />
-              </button>
-            </div>
-          </form>
+              </button> */}
+            </Details>
+            <Details>
+              <MdCall />
+              (+234) 8154084233, 8034485468
+            </Details>
+            <Details>
+              <MdLocationOn /> 371 Borno Way, Yaba, Lagos, Nigeria
+            </Details>
+          </SubContainer>
         </Body>
       </FooterContainer>
     </div>
@@ -119,11 +106,22 @@ export const Body = styled.div`
   }
 `;
 
+export const SubContainer = styled.div`
+  @media screen and (max-width: 890px) {
+    display: ${({ $hide }) => $hide && "none"};
+  }
+`;
+
 export const Details = styled.p`
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-weight: 300;
+  margin-block: 8px;
   cursor: pointer;
 
   @media screen and (max-width: 890px) {
-    display: none;
+    display: ${({ $hide }) => $hide && "none"};
     text-align: left;
   }
 `;

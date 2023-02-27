@@ -7,21 +7,22 @@ import { storeTitle } from "../../redux/slices";
 import { store } from "../../redux/store";
 
 const SoilRequirements = () => {
-  const { selectedCropDetails } = useSelector((store) => store.database);
-
+  const { cropDetails } = useSelector((store) => store.database);
   useEffect(() => {
     store.dispatch(storeTitle("Soil Requirements"));
   }, []);
 
-  const soilObj = selectedCropDetails?.soils
-    ? selectedCropDetails?.soils[0]
-    : {};
+  const soilArrr = cropDetails?.soils ? cropDetails?.soils[0] : [];
 
-  const climaticReqArr = soilObj ? Object.entries(soilObj) : [];
+  console.log(cropDetails);
+  // const climaticReqArr = soilObj ? Object.entries(soilObj) : [];
 
-  let listArr = climaticReqArr?.filter((each) => each[0] !== "id");
+  // let listArr = climaticRe?qArr?.filter((each) => each[0] !== "id");
 
-  const list = listArr.map((list) => ({ property: [list[0]], value: list[1] }));
+  const list = soilArrr.map((list) => ({
+    property: [list[0]],
+    value: list[1],
+  }));
 
   return (
     <SoilReqContainer>

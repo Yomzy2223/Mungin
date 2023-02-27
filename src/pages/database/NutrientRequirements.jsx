@@ -7,26 +7,19 @@ import { storeTitle } from "../../redux/slices";
 import { store } from "../../redux/store";
 
 const NutrientRequirements = () => {
-  const { selectedCropDetails } = useSelector((store) => store.database);
+  const { cropDetails } = useSelector((store) => store.database);
 
   useEffect(() => {
     store.dispatch(storeTitle("Nutrient Requirements"));
   }, []);
 
-  const nutrientsObj = selectedCropDetails.nutrients
-    ? selectedCropDetails?.nutrients[0]
+  const nutrients = cropDetails?.nutrient[0];
+  const list = nutrients
+    ? [
+        { property: "Micro Quantity", value: nutrients.microQuantity },
+        { property: "Macro Quantity", value: nutrients.macroQuantity },
+      ]
     : {};
-  const nutrientsArr = nutrientsObj ? Object.entries(nutrientsObj) : [];
-
-  let listArr = nutrientsArr?.filter(
-    (each) =>
-      each[0] !== "id" &&
-      each[0] !== "crop" &&
-      each[0] !== "macro" &&
-      each[0] !== "micro"
-  );
-
-  const list = listArr.map((list) => ({ property: [list[0]], value: list[1] }));
 
   return (
     <NutrientReqContainer>

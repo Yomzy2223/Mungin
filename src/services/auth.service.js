@@ -65,38 +65,47 @@ class AuthService {
 
 export const loginUser = async (formData) => {
   let requiredData = {
-    email: formData.email,
-    password: formData.password,
+    phoneNumber: formData.phoneNumber,
+    // password: formData.password,
   };
   try {
     let response = await client.post("/auth/login", requiredData);
-    if (response.status === 200) toast.success("Login successful");
+    toast.success("Login successful");
     console.log(response);
-    return response.data;
+    return true;
   } catch (e) {
     if (e.message.toString() === "Network Error") toast.error(e.message);
-    else toast.error(e.response.data);
-    return e.response.data;
+    else toast.error(e.response.data ? e.response.data.error : "Error");
+    return false;
   }
 };
 
 export const registerUser = async (formData) => {
   let requiredData = {
-    fullName: formData.name,
-    password: formData.password,
+    fullName: formData.fullName,
+    // password: formData.password,
     email: formData.email,
-    isFarmer: formData.isFarmer,
+    isFarmer: formData.farmer,
+    numberOfFarm: formData.numberOfFarm,
+    farmName: formData.farmName,
+    location: formData.location,
+    type: formData.farmType,
+    animalName: formData.animalName,
+    phoneNumber: formData.phoneNumber,
+    averageFarmYield: formData.averageFarmYield,
+    farmSize: formData.farmSize,
   };
+  console.log(requiredData);
   try {
-    let response = await client.post("/auth/register", requiredData);
-    if (response.status === 200) toast.success("Registration successful");
+    let response = await client.post("/auth/farm/register", requiredData);
     console.log(response);
-    return response.data;
+    if (response.data.email) toast.success("Registration successful");
+    return true;
   } catch (e) {
     if (e.message.toString() === "Network Error") toast.error(e.message);
     else toast.error(e.response.data);
     console.log(e);
-    return e.response.data;
+    return false;
   }
 };
 
@@ -113,9 +122,23 @@ export const getCrops = async () => {
   }
 };
 
-export const getCropsDetails = async () => {
+export const getCropDetails = async (id) => {
   try {
-    let response = await client.get("/crop/fetch");
+    let response = await client.get(`/crop/lazy?id=${id}`);
+    return response.data;
+  } catch (e) {
+    if (e.message.toString() === "Network Error")
+      toast.error("Please check your internet connection");
+    else toast.error(e.response.data);
+    console.log(e);
+    return e.response.data;
+  }
+};
+
+export const analyzeCrop = async (searchParams) => {
+  try {
+    // console.log(`/crop/yield/check${searchParams}`);
+    let response = await client.put(`/crop/yield/check${searchParams}`);
     return response.data;
   } catch (e) {
     if (e.message.toString() === "Network Error")

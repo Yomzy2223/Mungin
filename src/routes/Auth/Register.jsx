@@ -22,13 +22,15 @@ const Register = () => {
     farmName: "",
     location: "",
     animalName: "",
-    animalsize: "",
+    farmSize: "",
     cropName: "",
     cropsize: "",
     produceName: "",
     othersize: "",
+    phoneNumber: "",
+    averageFarmYield: "",
   };
-  const [farmer, setfarmer] = useState(Boolean);
+  const [farmer, setfarmer] = useState(true);
   const [formValues, setformValues] = useState(initialValues);
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -47,79 +49,23 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setformErrors(validate(formValues, farmer));
+    // setformErrors(validate(formValues, farmer));
     setisSubmit(true);
     setIsLoading(true);
     setMessage("");
     setSuccessful(false);
     console.log(formValues, "register");
-    if (Object.keys(formErrors).length === 0 && isSubmit) {
-      let requriedData = {
-        fullName: formValues.fullName,
-        password: formValues.password,
-        email: formValues.email,
-        isFarmer: formValues.farmer,
-      };
-
-      let response = await registerUser(requriedData);
-      console.log(response);
-      if (response.includes("registered successfully")) navigate("/");
-      setIsLoading(false);
-
-      // AuthService.register(
-      //   formValues.email,
-      //   formValues.password,
-      //   formValues.fullName,
-      //   farmer,
-      //   formValues.numberOfFarm,
-      //   formValues.farmName,
-      //   formValues.location,
-      //   formValues.animalName,
-      //   formValues.animalsize,
-      //   formValues.cropName,
-      //   formValues.cropsize,
-      //   formValues.produceName,
-      //   formValues.othersize
-      // ).then(
-      //   (response) => {
-      //     setMessage(response.data.message);
-      //     setSuccessful(true);
-      //     console.log(formValues, "response");
-      //   },
-      //   (error) => {
-      //     const resMessage =
-      //       (error.response &&
-      //         error.response.data &&
-      //         error.response.data.message) ||
-      //       error.message ||
-      //       error.toString();
-      //     setSuccessful(false);
-      //     setMessage(resMessage);
-      //     console.log(error.response.data);
-      //   }
-      // );
-      // AuthService.registerFarm(
-
-      // ).then(
-      //   response => {
-      //     setMessage(response.data.message)
-      //     setSuccessfulFarm(true)
-      //     console.log(response,'farmUser')
-      //   },error => {
-      //     const resMessage =
-      //     (error.response &&
-      //       error.response.data &&
-      //       error.response.data.message) ||
-      //       error.message ||
-      //       error.toString();
-      //     setSuccessfulFarm(false)
-      //     setMessage(resMessage)
-      //     console.log(error.response.data)
-      //   }
-      // )
-    } else {
-      setIsLoading(false);
+    // if (Object.keys(formErrors).length === 0 && isSubmit) {
+    let response = await registerUser(formValues);
+    setIsLoading(false);
+    console.log(response);
+    if (response) {
+      toast.success("Account created successfully");
+      navigate("/");
     }
+    // } else {
+    //   setIsLoading(false);
+    // }
   };
 
   useEffect(() => {
@@ -136,18 +82,18 @@ const Register = () => {
     if (!values.fullName) {
       errors.fullName = "name is required!";
     }
-    if (!values.email) {
-      errors.email = "Email is required!";
-    } else if (!regex.test(values.email)) {
-      errors.email = "please input a valid email!";
-    }
-    if (!values.password) {
-      errors.password = "Password is required!";
-    } else if (values.password.length < 4) {
-      errors.password = "password must exceed 4 characters!";
-    } else if (values.password.length > 10) {
-      errors.password = "password must be less than 10 characters!";
-    }
+    // if (!values.email) {
+    //   errors.email = "Email is required!";
+    // } else if (!regex.test(values.email)) {
+    //   errors.email = "please input a valid email!";
+    // }
+    // if (!values.password) {
+    //   errors.password = "Password is required!";
+    // } else if (values.password.length < 4) {
+    //   errors.password = "password must exceed 4 characters!";
+    // } else if (values.password.length > 10) {
+    //   errors.password = "password must be less than 10 characters!";
+    // }
     if (farmer == null) {
       errors.farmer = "cannot be blank!";
     }
@@ -200,7 +146,7 @@ const Register = () => {
               <p className="text-red-500">{formErrors.fullName}</p>
             </div>
             {/* email */}
-            <div>
+            {/* <div>
               <p className="mb-2">Email Address</p>
               <input
                 type="email"
@@ -211,9 +157,9 @@ const Register = () => {
                 className="py-3 pl-4 flex-1  border w-4/5"
               />
               <p className="text-red-500">{formErrors.email}</p>
-            </div>
+            </div> */}
             {/* password */}
-            <div>
+            {/* <div>
               <p className="mb-2">Password</p>
               <input
                 type="password"
@@ -223,9 +169,21 @@ const Register = () => {
                 className="py-3 pl-4 flex-1  border w-4/5"
               />
               <p className="text-red-500">{formErrors.password}</p>
+            </div> */}
+            {/* phone number */}
+            <div>
+              <p className="mb-2">Phone Number</p>
+              <input
+                type="number"
+                name="phoneNumber"
+                value={formValues.phoneNumber}
+                onChange={handleChange}
+                placeholder="Enter your phone number"
+                className="py-3 pl-4 flex-1  border w-4/5"
+              />
             </div>
             {/* radio container */}
-            <div>
+            {/* <div>
               <p className="pb-2">Are You a Farmer?</p>
               <div className="space-x-12 flex text-[#888888]">
                 <div>
@@ -246,9 +204,8 @@ const Register = () => {
                   />
                   <span className="ml-1">No</span>
                 </div>
-                {/* <p className='text-red-500'>{formErrors.farmer}</p>   */}
               </div>
-            </div>
+            </div> */}
             <h1>{farmer}</h1>
             {/* conditional div */}
             {farmer === true && (
@@ -277,6 +234,19 @@ const Register = () => {
                     className="py-3 pl-4 flex-1  border w-4/5"
                   />
                 </div>
+                {/* Average crop yield */}
+                <div>
+                  <p className="mb-2">Average Farm Yield</p>
+                  <input
+                    type="text"
+                    name="averageFarmYield"
+                    value={formValues.averageFarmYield}
+                    onChange={handleChange}
+                    placeholder="2 tons"
+                    className="py-3 pl-4 flex-1  border w-4/5"
+                  />
+                </div>
+
                 {/* location */}
                 <div>
                   <p className="mb-2">Location(s)</p>
@@ -291,8 +261,15 @@ const Register = () => {
                 </div>
                 {/* drop down menu */}
                 <div>
-                  <p className="pb-2">Farm Type</p>
-                  <div>
+                  <p className="pb-2">Farm Type(s)</p>
+                  <input
+                    type="text"
+                    name="farmType"
+                    onChange={handleChange}
+                    placeholder="Animal, Crop..."
+                    className="py-3 pl-4 flex-1  border w-4/5"
+                  />
+                  {/* <div>
                     <select
                       value={farmType}
                       onChange={(e) => setfarmType(e.target.value)}
@@ -303,36 +280,36 @@ const Register = () => {
                       <option value="Crop">Crop</option>
                       <option value="Other">Other</option>
                     </select>
-                  </div>
+                  </div> */}
                 </div>
 
                 {/* Animal farm container */}
-                {farmType === "Animal" && (
-                  <div className="space-y-6">
-                    {/* Name(s) */}
-                    <div>
-                      <p className="mb-2">Name(s)</p>
-                      <input
-                        type="text"
-                        name="animalName"
-                        onChange={handleChange}
-                        placeholder="Goat, Cow, Dog..."
-                        className="py-3 pl-4 flex-1  border w-4/5"
-                      />
-                    </div>
-                    {/* Size */}
-                    <div>
-                      <p className="mb-2">Size</p>
-                      <input
-                        type="text"
-                        name="animalsize"
-                        onChange={handleChange}
-                        placeholder="2sqkm"
-                        className="py-3 pl-4 flex-1  border w-4/5"
-                      />
-                    </div>
+                {/* {farmType === "Animal" && ( */}
+                <div className="space-y-6">
+                  {/* Name(s) */}
+                  <div>
+                    <p className="mb-2">Name(s)</p>
+                    <input
+                      type="text"
+                      name="animalName"
+                      onChange={handleChange}
+                      placeholder="Goat, Maize, Cow..."
+                      className="py-3 pl-4 flex-1  border w-4/5"
+                    />
                   </div>
-                )}
+                  {/* Size */}
+                  <div>
+                    <p className="mb-2">Size</p>
+                    <input
+                      type="text"
+                      name="farmSize"
+                      onChange={handleChange}
+                      placeholder="2 hectares"
+                      className="py-3 pl-4 flex-1  border w-4/5"
+                    />
+                  </div>
+                </div>
+                {/* )} */}
 
                 {/* Crop farm container */}
                 {farmType === "Crop" && (
@@ -381,7 +358,7 @@ const Register = () => {
                       <p className="mb-2">Size</p>
                       <input
                         type="text"
-                        name="othersize"
+                        name="otherSize"
                         onChange={handleChange}
                         placeholder="2sqkm"
                         className="py-3 pl-4 flex-1  border w-4/5"
@@ -394,7 +371,10 @@ const Register = () => {
 
             {/* button container */}
             <div>
-              <button className="py-6 pl-2 flex flex-1 justify-center font-bold border mb-4 w-4/5 bg-[#17233C] text-white">
+              <button
+                className="py-6 pl-2 flex flex-1 justify-center font-bold border mb-4 w-4/5 bg-[#17233C] text-white"
+                disabled={isLoading}
+              >
                 {isLoading ? (
                   <Oval stroke="#ffffff" fill="white" width={24} height={24} />
                 ) : (

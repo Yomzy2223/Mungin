@@ -39,14 +39,9 @@ const Login = () => {
     setSuccessful(false);
     setMessage("");
     if (Object.keys(formErrors).length === 0 && isSubmit) {
-      let requriedData = {
-        email: formValues.email,
-        password: formValues.password,
-      };
-
-      let response = await loginUser(requriedData);
+      let response = await loginUser(formValues);
       console.log(response);
-      if (response.toLowerCase().includes("successful")) navigate("/");
+      if (response === true) navigate("/");
       setIsLoading(false);
       // AuthService.login(formValues.email, formValues.password).then(
       //   () => {
@@ -84,18 +79,18 @@ const Login = () => {
   const validate = (values) => {
     const errors = {};
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-    if (!values.email) {
-      errors.email = "input your email!!";
-    } else if (!regex.test(values.email)) {
-      errors.email = "please input a valid email!";
-    }
-    if (!values.password) {
-      errors.password = "password is required!!";
-    } else if (values.password.length < 4) {
-      errors.password = "password must be greater than 4";
-    } else if (values.password.length > 10) {
-      errors.password = "password must be less than 10";
-    }
+    // if (!values.email) {
+    //   errors.email = "input your email!!";
+    // } else if (!regex.test(values.email)) {
+    //   errors.email = "please input a valid email!";
+    // }
+    // if (!values.password) {
+    //   errors.password = "password is required!!";
+    // } else if (values.password.length < 4) {
+    //   errors.password = "password must be greater than 4";
+    // } else if (values.password.length > 10) {
+    //   errors.password = "password must be less than 10";
+    // }
 
     return errors;
   };
@@ -128,7 +123,7 @@ const Login = () => {
 
           <div className="text-[#313131] space-y-6">
             {/* email */}
-            <div>
+            {/* <div>
               <p className="mb-2">Email Address</p>
               <input
                 type="email"
@@ -139,9 +134,21 @@ const Login = () => {
                 className="py-3 pl-4 flex-1  border w-4/5"
               />
               <p className="text-red-500">{formErrors.email}</p>
+            </div> */}
+            <div>
+              <p className="mb-2">Phone Number</p>
+              <input
+                type="number"
+                name="phoneNumber"
+                value={formValues.phoneNumber}
+                onChange={handleChange}
+                placeholder="Enter your phone number"
+                className="py-3 pl-4 flex-1  border w-4/5"
+              />
+              <p className="text-red-500">{formErrors.phoneNumber}</p>
             </div>
             {/* password */}
-            <div>
+            {/* <div>
               <p className="mb-2">Password</p>
               <input
                 type="password"
@@ -152,7 +159,7 @@ const Login = () => {
                 className="py-3 pl-4 flex-1  border w-4/5"
               />
               <p className="text-red-500">{formErrors.password}</p>
-            </div>
+            </div> */}
             {/* button container */}
             <div>
               <button className="py-6 pl-2 flex flex-1 justify-center font-bold border w-4/5 bg-[#17233C] text-white">

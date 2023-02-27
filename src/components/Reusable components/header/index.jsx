@@ -4,7 +4,7 @@ import { profileImg } from "../../../assets/images";
 import { MdKeyboardArrowLeft, MdKeyboardArrowDown } from "react-icons/md";
 import { HiOutlineMenu } from "react-icons/hi";
 import { Link } from "react-router-dom";
-import MobileSidebar from "../sidebar/MobileSidebar";
+import MobileDetailsSidebar from "../sidebar/MobileDetailsSidebar";
 
 const DetailsHeader = ({ title }) => {
   const [openSidebar, setOpenSidebar] = useState(false);
@@ -12,22 +12,26 @@ const DetailsHeader = ({ title }) => {
   return (
     <Container>
       <TopContainer>
+        <Top>
+          <Link to="/database">
+            <MdKeyboardArrowLeft /> Back
+          </Link>
+          <MobileDetailsSidebar
+            open={openSidebar}
+            setOpen={setOpenSidebar}
+            anchor="right"
+          />
+          {/* <span>
+            <img src={profileImg} alt="profile" />
+            <MdKeyboardArrowDown />
+          </span> */}
+        </Top>
         <MenuIcon
           onClick={() => setOpenSidebar(true)}
           style={{ cursor: "pointer" }}
         >
           <HiOutlineMenu size={24} />
         </MenuIcon>
-        <Top>
-          <Link to="/database">
-            <MdKeyboardArrowLeft /> Back
-          </Link>
-          <MobileSidebar open={openSidebar} setOpen={setOpenSidebar} />
-          <span>
-            <img src={profileImg} alt="profile" />
-            <MdKeyboardArrowDown />
-          </span>
-        </Top>
       </TopContainer>
       <p>{title}</p>
     </Container>
