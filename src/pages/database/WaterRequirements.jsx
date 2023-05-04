@@ -8,50 +8,39 @@ import { store } from "../../redux/store";
 
 const SoilRequirements = () => {
   const { cropDetails } = useSelector((store) => store.database);
+
   useEffect(() => {
-    store.dispatch(storeTitle("Soil Requirements"));
+    store.dispatch(storeTitle("Water Requirements"));
   }, []);
 
-  const soilArrr = cropDetails?.soilRequirement
-    ? cropDetails?.soilRequirement[0]
+  const waterReq = cropDetails?.soilRequirement
+    ? cropDetails?.waterRequirement
     : [];
 
   const list = [
     {
-      property: "Caption Exchange",
+      property: "Maximum Quality",
       value: (
         <div style={{ textTransform: "lowercase" }}>
-          {soilArrr?.cationXchange}
+          {waterReq?.maxQuantity}
         </div>
       ),
     },
     {
-      property: "Moisture Content",
+      property: "Minimum Quality",
       value: (
         <div style={{ textTransform: "lowercase" }}>
-          {soilArrr?.moistureContent}
+          {waterReq?.minQuantity}
         </div>
       ),
     },
     {
-      property: "Organic Matter",
+      property: "Water Source Name",
       value: (
         <div style={{ textTransform: "lowercase" }}>
-          {soilArrr?.organicMatter}
+          {waterReq?.waterSourceName}
         </div>
       ),
-    },
-    {
-      property: "Soil PH",
-      value: soilArrr?.soilPH,
-    },
-    {
-      property: "Soil Type",
-      value: soilArrr?.soilType,
-    },
-    {
-      property: "Texture",
-      value: soilArrr?.texture,
     },
   ];
 

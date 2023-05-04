@@ -3,29 +3,17 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 import DropDown from "../../components/Reusable components/CropDetails/DropDown";
 import ImageWithLabel from "../../components/Reusable components/CropDetails/ImageWithLabel";
-import Empty from "../../components/Reusable components/Empty";
 import { storeTitle } from "../../redux/slices";
 import { store } from "../../redux/store";
 
 const Cultivar = () => {
   const { cropDetails } = useSelector((store) => store.database);
-  console.log(cropDetails);
 
   useEffect(() => {
     store.dispatch(storeTitle("Cultivar"));
   }, []);
 
   const cultivars = cropDetails.cultivars ? cropDetails?.cultivars : {};
-  // const cultivarArr = cultivarObj ? Object.entries(cultivarObj) : [];
-
-  // let listArr = cultivarArr?.filter((each) => each[0] !== "id");
-
-  // const list = listArr.map((list) => ({
-  //   property: [list[0]],
-  //   value: list[1],
-  // }));
-
-  // const image = cultivarObj?.imageUrl;
 
   return (
     <CultivarContainer>
@@ -49,11 +37,6 @@ const Cultivar = () => {
           />
         </DropDown>
       ))}
-      {/* <ImageWithLabel
-        image={image}
-        list={list}
-        imgStyle={{ maxHeight: "100%" }}
-      /> */}
     </CultivarContainer>
   );
 };

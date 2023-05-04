@@ -17,13 +17,6 @@ const Variety = () => {
 
   const varieties = cropDetails.varieties ? cropDetails.varieties : [];
 
-  // const list = varieties.map((variety) => ({
-  //   property: variety?.types,
-  //   value: variety?.estimatedYield,
-  // }));
-
-  // const image = varietyObj?.imageUrl;
-
   return (
     <VarietyContainer>
       {varieties?.map((variety) => (
@@ -40,7 +33,6 @@ const Variety = () => {
           />
         </DropDown>
       ))}
-      {/* <ImageWithLabel image="" list={list} imgStyle={{ maxHeight: "100%" }} />{" "} */}
     </VarietyContainer>
   );
 };

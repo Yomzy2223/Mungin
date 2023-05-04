@@ -27,4 +27,8 @@ const ProductionFacts = () => {
 
 export default ProductionFacts;
 
-const ProdFactsContainer = styled.div``;
+const ProdFactsContainer = styled.div`
+  display: flex;
+  flex-flow: column;
+  gap: 16px;
+`;

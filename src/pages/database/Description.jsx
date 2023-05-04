@@ -20,9 +20,6 @@ const Description = () => {
     (each) => each[0] !== "id"
   );
 
-  console.log(descArray);
-  console.log(description);
-
   return (
     <DescriptionContainer>
       {descArray.map((desc, index) => (
@@ -34,4 +31,8 @@ const Description = () => {
 
 export default Description;
 
-export const DescriptionContainer = styled.div``;
+export const DescriptionContainer = styled.div`
+  display: flex;
+  flex-flow: column;
+  gap: 16px;
+`;
